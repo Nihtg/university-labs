@@ -1,556 +1,570 @@
-import os
-DOCS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'docs'))
-os.makedirs(DOCS_DIR, exist_ok=True)
 """
-Скрипт формирования полноценного отчета по лабораторной работе №1
-в формате Microsoft Word (.docx) в строгом соответствии с ГОСТ 7.32
-и методическими требованиями кафедры ЭБЖиЭ МТУСИ.
+Генератор отчета по ГОСТ 7.32-2017 для Лабораторной работы № 1.
+Требования:
+- Шрифт: Times New Roman, строго 14 пт (в таблицах 12 пт для компактности)
+- Цвет: исключительно черный (RGB 0, 0, 0)
+- Межстрочный интервал: 1.5 строки
+- Абзацный отступ: ровно 1.25 см
+- Выравнивание основного текста: по ширине (Justify)
+- Формулы: по центру, номер справа в скобках (1), без деформации строк
+- Таблицы: сетка черного цвета, шапка без цветных заливок, подпись над таблицей слева
+- Никаких случайных переносов строк и растянутых пробелов
 """
 
 import os
 import docx
 from docx import Document
-from docx.shared import Inches, Pt, RGBColor
+from docx.shared import Cm, Pt, RGBColor, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT, WD_ALIGN_VERTICAL
 from docx.oxml import parse_xml, OxmlElement
 from docx.oxml.ns import nsdecls, qn
 
-from lighting_calculator import NaturalLightingCalculator, get_variant_6_params
+BASE_DIR = r"C:\Users\Слава\.gemini\antigravity\scratch\university-labs\information-ecology\lab-01-natural-lighting"
+DOCS_DIR = os.path.join(BASE_DIR, "docs")
+SRC_DIR = os.path.join(BASE_DIR, "src")
+os.makedirs(DOCS_DIR, exist_ok=True)
 
 
-def set_cell_background(cell, hex_color: str):
-    """Установка фонового цвета ячейки таблицы."""
-    tcPr = cell._tc.get_or_add_tcPr()
-    shd = parse_xml(f'<w:shd {nsdecls("w")} w:fill="{hex_color}"/>')
-    tcPr.append(shd)
-
-
-def set_table_borders(table, color="D3D3D3", sz="4", val="single"):
-    """Установка тонких аккуратных границ для таблицы."""
+def set_table_gost_borders(table):
+    """Классические границы таблицы по ГОСТ (тонкая сплошная черная сетка)."""
     tblPr = table._tbl.tblPr
     borders = parse_xml(
         f'<w:tblBorders {nsdecls("w")}>'
-        f'  <w:top w:val="{val}" w:sz="{sz}" w:space="0" w:color="{color}"/>'
-        f'  <w:bottom w:val="{val}" w:sz="{sz}" w:space="0" w:color="{color}"/>'
-        f'  <w:left w:val="none"/>'
-        f'  <w:right w:val="none"/>'
-        f'  <w:insideH w:val="{val}" w:sz="{sz}" w:space="0" w:color="{color}"/>'
-        f'  <w:insideV w:val="none"/>'
+        f'  <w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/>'
+        f'  <w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/>'
+        f'  <w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>'
+        f'  <w:right w:val="single" w:sz="4" w:space="0" w:color="000000"/>'
+        f'  <w:insideH w:val="single" w:sz="4" w:space="0" w:color="000000"/>'
+        f'  <w:insideV w:val="single" w:sz="4" w:space="0" w:color="000000"/>'
         f'</w:tblBorders>'
     )
     tblPr.append(borders)
 
 
-def format_paragraph(p, space_before=0, space_after=6, line_spacing=1.15, first_indent=0.49):
-    """Настройка стандартного абзаца."""
+def set_row_cant_split(row):
+    """Запрет разрыва строки таблицы на границе страниц."""
+    trPr = row._tr.get_or_add_trPr()
+    trPr.append(parse_xml(f'<w:cantSplit {nsdecls("w")}/>'))
+
+
+def add_p(doc, text="", space_before=0, space_after=0, align=WD_ALIGN_PARAGRAPH.JUSTIFY, indent=1.25, bold=False, italic=False, size=14):
+    """Добавление стандартного абзаца по ГОСТ 7.32."""
+    p = doc.add_paragraph()
+    p.alignment = align
+    p.paragraph_format.line_spacing = 1.5
     p.paragraph_format.space_before = Pt(space_before)
     p.paragraph_format.space_after = Pt(space_after)
-    p.paragraph_format.line_spacing = line_spacing
-    if first_indent > 0:
-        p.paragraph_format.first_line_indent = Inches(first_indent)
-
-
-def add_heading_styled(doc, text: str, level: int = 1):
-    """Добавление стилизованного заголовка."""
-    p = doc.add_paragraph()
-    format_paragraph(p, space_before=12, space_after=6, line_spacing=1.15, first_indent=0)
-    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    run = p.add_run(text)
-    run.font.name = "Times New Roman"
-    run.font.bold = True
-    if level == 1:
-        run.font.size = Pt(16)
-        run.font.color.rgb = RGBColor(24, 43, 73)
-    elif level == 2:
-        run.font.size = Pt(14)
-        run.font.color.rgb = RGBColor(40, 70, 110)
-    else:
-        run.font.size = Pt(13)
-        run.font.color.rgb = RGBColor(60, 60, 60)
+    p.paragraph_format.first_line_indent = Cm(indent)
+    if text:
+        run = p.add_run(text)
+        run.font.name = "Times New Roman"
+        run.font.size = Pt(size)
+        run.font.color.rgb = RGBColor(0, 0, 0)
+        run.font.bold = bold
+        run.font.italic = italic
     return p
 
 
-def build_docx_report():
-    params = get_variant_6_params()
-    res = NaturalLightingCalculator.calculate(params)
+def add_section_heading(doc, text: str):
+    """Заголовок структурного элемента по ГОСТ 7.32 (14 пт, полужирный, черный, точка в конце не ставится)."""
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    p.paragraph_format.line_spacing = 1.5
+    p.paragraph_format.space_before = Pt(12)
+    p.paragraph_format.space_after = Pt(6)
+    p.paragraph_format.first_line_indent = Cm(1.25)
+    p.paragraph_format.keep_with_next = True
+    run = p.add_run(text)
+    run.font.name = "Times New Roman"
+    run.font.size = Pt(14)
+    run.font.bold = True
+    run.font.color.rgb = RGBColor(0, 0, 0)
+    return p
 
+
+def add_formula_block(doc, formula_text: str, num_str: str = ""):
+    """
+    Размещение формулы строго по ГОСТ:
+    Формула по центру, номер формулы справа в скобках.
+    Используется невидимая таблица на 2 ячейки без границ, чтобы избежать проблем с растягиванием пробелов.
+    """
+    table = doc.add_table(rows=1, cols=2)
+    table.alignment = WD_TABLE_ALIGNMENT.CENTER
+    table.autofit = False
+    
+    # ширина полосы набора: 210 мм - 30 мм (левое) - 15 мм (правое) = 165 мм = 16.5 см
+    table.columns[0].width = Cm(14.5)
+    table.columns[1].width = Cm(2.0)
+
+    # убираем границы таблицы
+    tblPr = table._tbl.tblPr
+    borders = parse_xml(
+        f'<w:tblBorders {nsdecls("w")}>'
+        f'  <w:top w:val="none"/>'
+        f'  <w:bottom w:val="none"/>'
+        f'  <w:left w:val="none"/>'
+        f'  <w:right w:val="none"/>'
+        f'  <w:insideH w:val="none"/>'
+        f'  <w:insideV w:val="none"/>'
+        f'</w:tblBorders>'
+    )
+    tblPr.append(borders)
+
+    # Левая ячейка: формула по центру
+    c0 = table.rows[0].cells[0]
+    p0 = c0.paragraphs[0]
+    p0.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p0.paragraph_format.line_spacing = 1.5
+    p0.paragraph_format.space_before = Pt(4)
+    p0.paragraph_format.space_after = Pt(4)
+    p0.paragraph_format.first_line_indent = Cm(0)
+    r0 = p0.add_run(formula_text)
+    r0.font.name = "Times New Roman"
+    r0.font.size = Pt(14)
+    r0.font.italic = True
+    r0.font.color.rgb = RGBColor(0, 0, 0)
+
+    # Правая ячейка: номер формулы по правому краю
+    c1 = table.rows[0].cells[1]
+    p1 = c1.paragraphs[0]
+    p1.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    p1.paragraph_format.line_spacing = 1.5
+    p1.paragraph_format.space_before = Pt(4)
+    p1.paragraph_format.space_after = Pt(4)
+    p1.paragraph_format.first_line_indent = Cm(0)
+    if num_str:
+        r1 = p1.add_run(f"({num_str})")
+        r1.font.name = "Times New Roman"
+        r1.font.size = Pt(14)
+        r1.font.color.rgb = RGBColor(0, 0, 0)
+
+
+def generate_gost_report():
     doc = Document()
 
-    # Поля страницы по ГОСТ: левое 30 мм, правое 15 мм, верх/низ 20 мм
-    sections = doc.sections
-    for section in sections:
-        section.top_margin = Inches(0.79)     # 20 mm
-        section.bottom_margin = Inches(0.79)  # 20 mm
-        section.left_margin = Inches(1.18)    # 30 mm
-        section.right_margin = Inches(0.59)   # 15 mm
+    # Настройка полей ГОСТ 7.32 (левое 30 мм, правое 15 мм, верх/низ 20 мм)
+    for s in doc.sections:
+        s.top_margin = Cm(2.0)
+        s.bottom_margin = Cm(2.0)
+        s.left_margin = Cm(3.0)
+        s.right_margin = Cm(1.5)
+        s.header_distance = Cm(1.0)
+        s.footer_distance = Cm(1.0)
 
     # ==============================================================================
-    # ТИТУЛЬНЫЙ ЛИСТ (МТУСИ)
+    # ТИТУЛЬНЫЙ ЛИСТ (МТУСИ) ПО ГОСТ
     # ==============================================================================
-    p_min = doc.add_paragraph()
-    p_min.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    format_paragraph(p_min, space_before=0, space_after=2, line_spacing=1.0, first_indent=0)
-    r_min = p_min.add_run("МИНИСТЕРСТВО ЦИФРОВОГО РАЗВИТИЯ, СВЯЗИ И МАССОВЫХ КОММУНИКАЦИЙ\nРОССИЙСКОЙ ФЕДЕРАЦИИ")
-    r_min.font.name = "Times New Roman"
-    r_min.font.size = Pt(10)
-    r_min.font.bold = True
+    add_p(doc, "МИНИСТЕРСТВО ЦИФРОВОГО РАЗВИТИЯ, СВЯЗИ И МАССОВЫХ КОММУНИКАЦИЙ РОССИЙСКОЙ ФЕДЕРАЦИИ", 
+          space_before=0, space_after=2, align=WD_ALIGN_PARAGRAPH.CENTER, indent=0, bold=True, size=11)
+    add_p(doc, "Ордена Трудового Красного Знамени федеральное государственное бюджетное образовательное учреждение высшего образования",
+          space_before=0, space_after=2, align=WD_ALIGN_PARAGRAPH.CENTER, indent=0, size=11)
+    add_p(doc, "«МОСКОВСКИЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ СВЯЗИ И ИНФОРМАТИКИ»",
+          space_before=0, space_after=14, align=WD_ALIGN_PARAGRAPH.CENTER, indent=0, bold=True, size=12)
 
-    p_univ = doc.add_paragraph()
-    p_univ.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    format_paragraph(p_univ, space_before=2, space_after=18, line_spacing=1.0, first_indent=0)
-    r_univ = p_univ.add_run("Ордена Трудового Красного Знамени федеральное государственное бюджетное\n"
-                           "образовательное учреждение высшего образования\n"
-                           "«МОСКОВСКИЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ СВЯЗИ И ИНФОРМАТИКИ»\n(МТУСИ)")
-    r_univ.font.name = "Times New Roman"
-    r_univ.font.size = Pt(11)
-    r_univ.font.bold = True
+    add_p(doc, "Центр заочного обучения по программам бакалавриата",
+          space_before=0, space_after=2, align=WD_ALIGN_PARAGRAPH.CENTER, indent=0, size=12)
+    add_p(doc, "Кафедра экологии, безопасности жизнедеятельности и электропитания",
+          space_before=0, space_after=48, align=WD_ALIGN_PARAGRAPH.CENTER, indent=0, size=12)
 
-    p_sub = doc.add_paragraph()
-    p_sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    format_paragraph(p_sub, space_before=0, space_after=36, line_spacing=1.0, first_indent=0)
-    r_sub = p_sub.add_run("Центр заочного обучения по программам бакалавриата\n"
-                          "Кафедра «Экология, безопасность жизнедеятельности и электропитание»")
-    r_sub.font.name = "Times New Roman"
-    r_sub.font.size = Pt(11)
+    add_p(doc, "ОТЧЕТ", space_before=12, space_after=4, align=WD_ALIGN_PARAGRAPH.CENTER, indent=0, bold=True, size=18)
+    add_p(doc, "по лабораторной работе № 1", space_before=0, space_after=4, align=WD_ALIGN_PARAGRAPH.CENTER, indent=0, bold=True, size=14)
+    add_p(doc, "по дисциплине: «Информационная экология»", space_before=0, space_after=14, align=WD_ALIGN_PARAGRAPH.CENTER, indent=0, size=14)
+    add_p(doc, "Тема: «Расчет естественной освещенности в производственном помещении»", 
+          space_before=0, space_after=4, align=WD_ALIGN_PARAGRAPH.CENTER, indent=0, bold=True, size=14)
+    add_p(doc, "(Вариант № 6)", space_before=0, space_after=64, align=WD_ALIGN_PARAGRAPH.CENTER, indent=0, bold=True, size=14)
 
-    p_title = doc.add_paragraph()
-    p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    format_paragraph(p_title, space_before=24, space_after=6, line_spacing=1.15, first_indent=0)
-    r_title = p_title.add_run("ОТЧЕТ\nПО ЛАБОРАТОРНОЙ РАБОТЕ № 1")
-    r_title.font.name = "Times New Roman"
-    r_title.font.size = Pt(16)
-    r_title.font.bold = True
-    r_title.font.color.rgb = RGBColor(24, 43, 73)
-
-    p_disc = doc.add_paragraph()
-    p_disc.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    format_paragraph(p_disc, space_before=0, space_after=12, line_spacing=1.15, first_indent=0)
-    r_disc = p_disc.add_run("по дисциплине «Информационная экология»")
-    r_disc.font.name = "Times New Roman"
-    r_disc.font.size = Pt(13)
-    r_disc.font.italic = True
-
-    p_topic = doc.add_paragraph()
-    p_topic.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    format_paragraph(p_topic, space_before=6, space_after=60, line_spacing=1.15, first_indent=0)
-    r_topic = p_topic.add_run("Тема: «Расчёт естественной освещённости в производственном помещении»\n(Вариант № 6)")
-    r_topic.font.name = "Times New Roman"
-    r_topic.font.size = Pt(14)
-    r_topic.font.bold = True
-
-    # Блок автора и преподавателя
-    p_author = doc.add_paragraph()
-    p_author.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    format_paragraph(p_author, space_before=12, space_after=60, line_spacing=1.15, first_indent=0)
-    r_auth = p_author.add_run(
-        "Выполнил: студент группы БСТ2556\n"
-        "Смирнов Вячеслав Юрьевич\n"
-        "Зачетная книжка: ЗБСТ25066\n"
-        "Направление: 09.03.02 Информационные системы и технологии\n"
-        "Профиль: Инженерия DevSecOps (2 курс)\n\n"
-        "Проверил: доцент кафедры ЭБЖиЭ\n"
-        "Курбатов В.А.\n"
+    # Блок исполнителя и проверяющего
+    p_sign = doc.add_paragraph()
+    p_sign.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    p_sign.paragraph_format.line_spacing = 1.3
+    p_sign.paragraph_format.first_line_indent = Cm(0)
+    p_sign.paragraph_format.space_before = Pt(24)
+    p_sign.paragraph_format.space_after = Pt(72)
+    
+    r_sign = p_sign.add_run(
+        "Выполнил: студент группы БСТ2556\\n"
+        "Смирнов Вячеслав Юрьевич\\n"
+        "Зачетная книжка: ЗБСТ25066\\n"
+        "Направление: 09.03.02 Информационные системы и технологии\\n"
+        "Профиль: Инженерия DevSecOps (2 курс)\\n\\n"
+        "Проверил: доцент кафедры ЭБЖиЭ\\n"
+        "Курбатов В.А.\\n"
     )
-    r_auth.font.name = "Times New Roman"
-    r_auth.font.size = Pt(12)
+    r_sign.font.name = "Times New Roman"
+    r_sign.font.size = Pt(13)
+    r_sign.font.color.rgb = RGBColor(0, 0, 0)
 
-    p_city = doc.add_paragraph()
-    p_city.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    format_paragraph(p_city, space_before=36, space_after=0, line_spacing=1.0, first_indent=0)
-    r_city = p_city.add_run("Москва, 2026 г.")
-    r_city.font.name = "Times New Roman"
-    r_city.font.size = Pt(12)
+    add_p(doc, "Москва, 2026 г.", space_before=36, space_after=0, align=WD_ALIGN_PARAGRAPH.CENTER, indent=0, size=12)
 
     doc.add_page_break()
 
     # ==============================================================================
     # 1. ЦЕЛЬ И ЗАДАЧИ РАБОТЫ
     # ==============================================================================
-    add_heading_styled(doc, "1. Цель и задачи работы", level=1)
+    add_section_heading(doc, "1 Цель и задачи работы")
 
-    p_goal = doc.add_paragraph()
-    format_paragraph(p_goal)
-    p_goal.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    r = p_goal.add_run(
-        "Цель работы: изучить методику нормирования и инженерного расчёта естественного "
-        "бокового освещения в производственных помещениях вычислительных центров и аппаратных "
-        "залов предприятий связи в соответствии с требованиями СП 52.13330 (СНиП 23-05-95) "
-        "и методическими указаниями кафедры ЭБЖиЭ МТУСИ."
-    )
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(12)
+    add_p(doc, 
+          "Цель работы: изучить методику нормирования и инженерного расчета естественного бокового освещения "
+          "производственных помещений связи и вычислительных центров в соответствии с нормами СП 52.13330 "
+          "(актуализированная редакция СНиП 23-05-95) и методическими указаниями кафедры ЭБЖиЭ МТУСИ.")
 
-    p_tasks = doc.add_paragraph()
-    format_paragraph(p_tasks)
-    p_tasks.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    r = p_tasks.add_run(
-        "Задачи работы:\n"
-        "1. На основе нормативного разряда зрительной работы определить нормированное значение "
-        "коэффициента естественной освещённости (КЕО l_min).\n"
-        "2. Вычислить геометрические параметры помещения, световых проемов и взаимного расположения "
-        "с противостоящим зданием (h1, A/B, B/h1, L/H).\n"
-        "3. Определить нормативные коэффициенты: световую характеристику окна (η0), коэффициент "
-        "затенения противостоящими зданиями (K_зд), коэффициент светопропускания (r0) и средневзвешенный "
-        "коэффициент отражения внутренних поверхностей (ρ_ср).\n"
-        "4. Рассчитать необходимую площадь световых проемов S0 для обеспечения нормируемой освещенности.\n"
-        "5. Определить необходимое число окон n и величину межоконных промежутков b, провести инженерный "
-        "анализ равномерности освещения и реализуемости односторонней и двусторонней схем размещения."
-    )
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(12)
+    add_p(doc, "Задачи работы:")
+    add_p(doc, "1) по нормативному разряду зрительной работы определить минимальный коэффициент естественной освещенности (КЕО l_min);")
+    add_p(doc, "2) рассчитать геометрические параметры помещения, световых проемов и затенения противостоящим зданием;")
+    add_p(doc, "3) определить нормативные коэффициенты: световую характеристику окна η0, коэффициент затенения K_зд, общий коэффициент светопропускания r0 и средневзвешенный коэффициент отражения внутренних поверхностей ρ_ср;")
+    add_p(doc, "4) рассчитать требуемую суммарную площадь световых проемов S0, обеспечивающую нормируемую освещенность рабочих мест;")
+    add_p(doc, "5) определить необходимое количество окон n, величину межоконного расстояния b и оценить возможность их размещения на наружной стене производственного помещения;")
+    add_p(doc, "6) разработать технико-экономические и инженерные рекомендации по рациональной организации производственного освещения.")
 
     # ==============================================================================
     # 2. ИСХОДНЫЕ ДАННЫЕ ВАРИАНТА №6
     # ==============================================================================
-    add_heading_styled(doc, "2. Исходные данные варианта № 6", level=1)
+    add_section_heading(doc, "2 Исходные данные варианта № 6")
 
-    p_init_intro = doc.add_paragraph()
-    format_paragraph(p_init_intro)
-    p_init_intro.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    r = p_init_intro.add_run(
-        "Исходные данные приняты по Таблице 4.8 (последняя цифра зачетной книжки 6) "
-        "и Таблице 4.9 (предпоследняя цифра зачетной книжки 6) методического пособия МТУСИ. "
-        "Объект проектирования: аппаратный зал телеграфа / вычислительный зал на 3 этаже узла связи."
-    )
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(12)
+    add_p(doc, 
+          "Исходные данные для выполнения расчета приняты из учебно-методического пособия кафедры ЭБЖиЭ МТУСИ "
+          "по последней (6) и предпоследней (6) цифрам номера зачетной книжки ЗБСТ25066 (Таблицы 4.8 и 4.9). "
+          "Объектом расчета является аппаратный зал узла связи, расположенный на третьем этаже производственного здания.")
 
-    # Таблица исходных данных
-    table_init = doc.add_table(rows=12, cols=3)
-    table_init.alignment = WD_TABLE_ALIGNMENT.CENTER
-    set_table_borders(table_init)
+    # Таблица 1
+    add_p(doc, "Таблица 1 – Исходные параметры помещения и световых проемов (вариант № 6)", space_before=6, space_after=4, align=WD_ALIGN_PARAGRAPH.LEFT, indent=1.25)
+    
+    table1 = doc.add_table(rows=12, cols=3)
+    table1.alignment = WD_TABLE_ALIGNMENT.CENTER
+    set_table_gost_borders(table1)
+    
+    t1_headers = ["Наименование параметра", "Обозначение и значение", "Примечание"]
+    for c_i, name in enumerate(t1_headers):
+        cell = table1.cell(0, c_i)
+        p = cell.paragraphs[0]
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.line_spacing = 1.0
+        p.paragraph_format.space_before = Pt(3)
+        p.paragraph_format.space_after = Pt(3)
+        p.paragraph_format.first_line_indent = Cm(0)
+        run = p.add_run(name)
+        run.font.name = "Times New Roman"
+        run.font.size = Pt(12)
+        run.font.bold = True
+        run.font.color.rgb = RGBColor(0, 0, 0)
+    set_row_cant_split(table1.rows[0])
 
-    init_data = [
-        ("Разряд зрительной работы", "III", "Высокая точность (размер объекта различения 0,3–0,5 мм)"),
-        ("Длина помещения (A)", "20,0 м", "Размер вдоль наружной светонесущей стены"),
-        ("Ширина помещения (B)", "10,0 м", "Глубина помещения"),
-        ("Высота помещения (h)", "5,0 м", "Высота от пола до потолка"),
-        ("Высота оконного проема (h0)", "3,5 м", "Вертикальный размер окна"),
-        ("Высота подоконника над полом (h_под)", "1,2 м", "Расстояние от пола до подоконника"),
-        ("Высота рабочей поверхности (h_раб)", "1,2 м", "Уровень горизонтальной рабочей поверхности"),
-        ("Расстояние до здания напротив (L)", "30,0 м", "Расстояние между противостоящими зданиями"),
-        ("Высота карниза противостоящего здания (H)", "30,0 м", "Высота над уровнем подоконника зала"),
-        ("Ширина одного окна (b0)", "2,0 м", "Горизонтальный размер светового проема"),
-        ("Коэффициенты отражения поверхностей", "ρ_п = 50%\nρ_ст = 50%\nρ_пол = 10%", "Потолок и стены светлые, пол темный линолеум/бетон"),
-        ("Тип остекления и категория помещения", "Категория Б\n(стальные переплеты, двойные)", "Аппаратный зал с незначительным выделением пыли")
+    t1_rows = [
+        ("Разряд зрительной работы", "Разряд III", "Высокая точность (объект различения 0,3–0,5 мм)"),
+        ("Длина производственного помещения", "A = 20,0 м", "Размер вдоль светонесущей стены"),
+        ("Ширина производственного помещения", "B = 10,0 м", "Глубина помещения"),
+        ("Высота производственного помещения", "h = 5,0 м", "Высота от пола до потолка"),
+        ("Высота оконного проема", "h0 = 3,5 м", "Высота светопрозрачной части окна"),
+        ("Высота подоконника над полом", "h_под = 1,2 м", "Расстояние от уровня пола до подоконника"),
+        ("Высота рабочей поверхности", "h_раб = 1,2 м", "Уровень горизонтальной рабочей плоскости"),
+        ("Расстояние до здания напротив", "L = 30,0 м", "Расстояние между противостоящими зданиями"),
+        ("Высота карниза противостоящего здания", "H = 30,0 м", "Высота карниза над уровнем подоконника"),
+        ("Ширина одного оконного проема", "b0 = 2,0 м", "Ширина светового проема"),
+        ("Коэффициенты отражения поверхностей", "ρ_п = 50 %, ρ_ст = 50 %, ρ_пол = 10 %", "Потолок и стены светлые, пол темный")
     ]
 
-    hdr_cells = table_init.rows[0].cells
-    hdr_cells[0].text = "Наименование параметра"
-    hdr_cells[1].text = "Значение"
-    hdr_cells[2].text = "Примечание"
-    for cell in hdr_cells:
-        set_cell_background(cell, "E8EEF5")
-        for p in cell.paragraphs:
-            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            for run in p.runs:
-                run.font.name = "Times New Roman"
-                run.font.bold = True
-                run.font.size = Pt(11)
-
-    for idx, (param, val, note) in enumerate(init_data):
-        row_cells = table_init.rows[idx].cells
-        row_cells[0].text = param
-        row_cells[1].text = val
-        row_cells[2].text = note
-        for c_idx, cell in enumerate(row_cells):
-            for p in cell.paragraphs:
-                p.alignment = WD_ALIGN_PARAGRAPH.CENTER if c_idx == 1 else WD_ALIGN_PARAGRAPH.LEFT
-                for run in p.runs:
-                    run.font.name = "Times New Roman"
-                    run.font.size = Pt(10)
+    for r_idx, row_data in enumerate(t1_rows):
+        row = table1.rows[r_idx + 1]
+        set_row_cant_split(row)
+        for c_idx, val in enumerate(row_data):
+            cell = row.cells[c_idx]
+            p = cell.paragraphs[0]
+            p.alignment = WD_ALIGN_PARAGRAPH.CENTER if c_idx == 1 else WD_ALIGN_PARAGRAPH.LEFT
+            p.paragraph_format.line_spacing = 1.0
+            p.paragraph_format.space_before = Pt(3)
+            p.paragraph_format.space_after = Pt(3)
+            p.paragraph_format.first_line_indent = Cm(0)
+            run = p.add_run(val)
+            run.font.name = "Times New Roman"
+            run.font.size = Pt(12)
+            run.font.color.rgb = RGBColor(0, 0, 0)
 
     # ==============================================================================
-    # 3. МЕТОДИКА И ПОШАГОВЫЙ РАСЧЕТ
+    # 3. ПОШАГОВЫЙ ИНЖЕНЕРНЫЙ РАСЧЕТ
     # ==============================================================================
-    add_heading_styled(doc, "3. Методика и расчет параметров естественного освещения", level=1)
+    add_section_heading(doc, "3 Методика и пошаговый расчет естественного освещения")
 
-    p_f1 = doc.add_paragraph()
-    format_paragraph(p_f1)
-    p_f1.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    r = p_f1.add_run(
-        "3.1. Определение расчетного параметра окна h1\n"
-        "Под параметром окна h1 понимается возвышение верхнего края оконного проема над "
-        "горизонтальной рабочей поверхностью:\n"
-        "h1 = h0 + h_под - h_раб\n"
-        f"h1 = 3,5 + 1,2 - 1,2 = {res.h1:.2f} м."
-    )
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(12)
+    add_p(doc, 
+          "Расчет необходимой площади оконных проемов для создания нормируемой естественной "
+          "освещенности в производственном помещении выполняется по формуле:")
+    
+    add_formula_block(doc, "S0 = (S_пол · l_min · η0 · K_зд) / (100 · r0 · r1),", "1")
 
-    p_f2 = doc.add_paragraph()
-    format_paragraph(p_f2)
-    p_f2.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    r = p_f2.add_run(
-        "3.2. Определение геометрических соотношений помещения\n"
-        f"• Отношение длины помещения к ширине: A / B = 20,0 / 10,0 = {res.ratio_AB:.2f}\n"
-        f"• Отношение ширины к расчетной высоте окна: B / h1 = 10,0 / {res.h1:.2f} = {res.ratio_Bh1:.3f}\n"
-        f"• Отношение расстояния между зданиями к высоте карниза: L / H = 30,0 / 30,0 = {res.ratio_LH:.2f}"
-    )
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(12)
+    add_p(doc, "где S_пол – площадь пола производственного помещения, м²;", indent=0)
+    add_p(doc, "l_min – минимальный (нормированный) коэффициент естественной освещенности, %;", indent=0)
+    add_p(doc, "η0 – световая характеристика окна;", indent=0)
+    add_p(doc, "K_зд – коэффициент, учитывающий затемнение окна противостоящим зданием;", indent=0)
+    add_p(doc, "r0 – общий коэффициент светопропускания оконного проема;", indent=0)
+    add_p(doc, "r1 – коэффициент, учитывающий влияние отраженного света при боковом освещении;", indent=0)
+    add_p(doc, "100 – коэффициент перевода процентов в относительные единицы.", indent=0)
 
-    p_f3 = doc.add_paragraph()
-    format_paragraph(p_f3)
-    p_f3.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    r = p_f3.add_run(
-        "3.3. Выбор нормативных коэффициентов по таблицам пособия\n"
-        f"1. Нормированное значение КЕО l_min (Таблица 4.1): для III разряда зрительной работы "
-        f"при боковом освещении l_min = {res.l_min:.1f}%.\n"
-        f"2. Коэффициент затемнения противостоящим зданием K_зд (Таблица 4.3): при L / H = 1,0 "
-        f"коэффициент составляет K_зд = {res.K_zd:.2f}.\n"
-        f"3. Световая характеристика окна η0 (Таблица 4.2): для отношения A / B = 2,0 и B / h1 = 2,857 "
-        f"путем интерполяции между значениями для B/h1=2,5 (η0=13,0) и B/h1=3,0 (η0=18,0) получаем:\n"
-        f"η0 = 13,0 + (18,0 - 13,0) × (2,857 - 2,5) / (3,0 - 2,5) = {res.eta0:.2f}.\n"
-        f"4. Общий коэффициент светопропускания r0 (Таблица 4.5): для помещений категории Б "
-        f"при вертикальном остеклении и стальных двойных переплетах r0 = {res.r0:.2f}."
-    )
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(12)
+    add_p(doc, "3.1 Определение расчетного параметра окна h1")
+    add_p(doc, "Под параметром окна h1 понимается возвышение верхнего края окна над горизонтальной рабочей поверхностью:")
+    add_formula_block(doc, "h1 = h0 + h_под - h_раб.", "2")
+    add_p(doc, "где h0 – высота оконного проема (h0 = 3,5 м);", indent=0)
+    add_p(doc, "h_под – расстояние от пола до подоконника (h_под = 1,2 м);", indent=0)
+    add_p(doc, "h_раб – высота рабочей поверхности над полом (h_раб = 1,2 м).", indent=0)
+    add_p(doc, "Подставляя числовые значения, получаем:")
+    add_formula_block(doc, "h1 = 3,5 + 1,2 - 1,2 = 3,50 м.")
 
-    p_f4 = doc.add_paragraph()
-    format_paragraph(p_f4)
-    p_f4.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    r = p_f4.add_run(
-        "3.4. Определение средневзвешенного коэффициента отражения ρ_ср и коэффициента r1\n"
-        "Площади ограждающих поверхностей производственного помещения:\n"
-        f"• Площадь пола: S_пол = A × B = 20 × 10 = {res.S_floor:.1f} м²;\n"
-        f"• Площадь потолка: S_п = A × B = 20 × 10 = {res.S_ceil:.1f} м²;\n"
-        f"• Площадь стен: S_ст = 2 × (A + B) × h = 2 × (20 + 10) × 5,0 = {res.S_walls:.1f} м²;\n"
-        f"• Полная внутренняя площадь: S_общ = {res.S_floor:.1f} + {res.S_ceil:.1f} + {res.S_walls:.1f} = {res.S_total:.1f} м².\n"
-        f"Средневзвешенный коэффициент отражения внутренних поверхностей:\n"
-        f"ρ_ср = (ρ_п·S_п + ρ_ст·S_ст + ρ_пол·S_пол) / S_общ\n"
-        f"ρ_ср = (0,50 × 200 + 0,50 × 300 + 0,10 × 200) / 700 = (100 + 150 + 20) / 700 = 270 / 700 = {res.rho_avg:.4f} ({res.rho_avg*100:.1f}%).\n"
-        f"По Таблице 4.6 определяем коэффициент r1, учитывающий отраженный свет:\n"
-        f"• При одностороннем боковом освещении: r1 = {res.r1_single:.2f};\n"
-        f"• При двустороннем боковом освещении: r1 = {res.r1_double:.2f}."
-    )
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(12)
+    add_p(doc, "3.2 Вычисление геометрических соотношений помещения")
+    add_p(doc, "Для нахождения табличных коэффициентов определяются следующие размерные пропорции:")
+    add_p(doc, "• Отношение длины помещения к его ширине:")
+    add_formula_block(doc, "A / B = 20,0 / 10,0 = 2,00.")
+    add_p(doc, "• Отношение ширины помещения к расчетному параметру окна h1:")
+    add_formula_block(doc, "B / h1 = 10,0 / 3,50 = 2,857 ≈ 2,86.")
+    add_p(doc, "• Отношение расстояния между зданиями к высоте карниза противостоящего здания над подоконником:")
+    add_formula_block(doc, "L / H = 30,0 / 30,0 = 1,00.")
 
-    p_f5 = doc.add_paragraph()
-    format_paragraph(p_f5)
-    p_f5.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    r = p_f5.add_run(
-        "3.5. Расчет площади световых проемов S0 и числа окон для одностороннего освещения\n"
-        "Необходимая площадь световых проемов определяется по основной формуле:\n"
-        "S0 = (S_пол · l_min · η0 · K_зд) / (100 · r0 · r1)\n"
-        f"S0 = ({res.S_floor:.1f} × {res.l_min:.1f} × {res.eta0:.2f} × {res.K_zd:.2f}) / (100 × {res.r0:.2f} × {res.r1_single:.2f}) = {res.S0_single:.2f} м².\n"
-        f"Площадь одного типового окна: S_окна = h0 × b0 = 3,5 × 2,0 = {res.S_window:.2f} м².\n"
-        f"Расчетное число окон: n_точн = S0 / S_окна = {res.S0_single:.2f} / {res.S_window:.2f} = {res.n_exact_single:.2f} шт.\n"
-        f"Принимаем ближайшее целое число окон: n = {res.n_single} шт.\n"
-        f"Величина межоконного расстояния b при размещении n окон в наружной стене длиной A=20 м:\n"
-        f"b = (A - n · b0) / (n + 1) = (20,0 - {res.n_single} × 2,0) / ({res.n_single} + 1) = (20,0 - {res.n_single * params.b0:.1f}) / {res.n_single + 1} = {res.b_single:.2f} м."
-    )
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(12)
+    add_p(doc, "3.3 Определение нормативных коэффициентов")
+    add_p(doc, "1) Нормированный коэффициент естественной освещенности l_min.")
+    add_p(doc, "По Таблице 4.1 учебно-методического пособия для III разряда зрительной работы (работа высокой точности с размером объекта различения 0,3–0,5 мм) при боковом освещении принимается l_min = 2,0 %.")
+    add_p(doc, "2) Коэффициент затенения противостоящим зданием K_зд.")
+    add_p(doc, "По Таблице 4.3 при найденном отношении L / H = 1,00 коэффициент затемнения равен K_зд = 1,40.")
+    add_p(doc, "3) Световая характеристика оконного проема η0.")
+    add_p(doc, "По Таблице 4.2 при отношении A / B = 2,0 и B / h1 = 2,857 значение световой характеристики определяется путем линейной интерполяции между табличными узлами B / h1 = 2,5 (η0 = 13,0) и B / h1 = 3,0 (η0 = 18,0):")
+    add_formula_block(doc, "η0 = 13,0 + (18,0 - 13,0) · (2,857 - 2,50) / (3,00 - 2,50) = 13,0 + 5,0 · 0,714 = 16,57.")
+    add_p(doc, "4) Общий коэффициент светопропускания r0.")
+    add_p(doc, "По Таблице 4.5 для производственных помещений группы Б (машинные и аппаратные залы предприятий связи) при вертикальном расположении остекления в двойных стальных переплетах общий коэффициент светопропускания составляет r0 = 0,40.")
+
+    add_p(doc, "3.4 Определение средневзвешенного коэффициента отражения внутренних поверхностей")
+    add_p(doc, "Площади ограждающих конструкций аппаратного зала составляют:")
+    add_p(doc, "• Площадь пола: S_пол = A · B = 20,0 · 10,0 = 200,0 м²;")
+    add_p(doc, "• Площадь потолка: S_п = A · B = 20,0 · 10,0 = 200,0 м²;")
+    add_p(doc, "• Площадь стен: S_ст = 2 · (A + B) · h = 2 · (20,0 + 10,0) · 5,0 = 300,0 м²;")
+    add_p(doc, "• Полная площадь внутренних поверхностей: S_общ = 200,0 + 200,0 + 300,0 = 700,0 м².")
+    add_p(doc, "Средневзвешенный коэффициент отражения определяется по формуле:")
+    add_formula_block(doc, "ρ_ср = (ρ_п · S_п + ρ_ст · S_ст + ρ_пол · S_пол) / S_общ,", "3")
+    add_formula_block(doc, "ρ_ср = (0,50 · 200,0 + 0,50 · 300,0 + 0,10 · 200,0) / 700,0 = (100,0 + 150,0 + 20,0) / 700,0 = 270,0 / 700,0 = 0,3857 (38,6 %).")
+    add_p(doc, "По Таблице 4.6 определяем коэффициент r1, учитывающий отраженный свет:")
+    add_p(doc, "• При одностороннем боковом освещении интерполяция между узлами ρ_ср = 0,30 (r1 = 2,0) и ρ_ср = 0,40 (r1 = 3,0) дает r1 = 2,86;")
+    add_p(doc, "• При двустороннем боковом освещении интерполяция между узлами ρ_ср = 0,30 (r1 = 1,2) и ρ_ср = 0,40 (r1 = 1,7) дает r1 = 1,70.")
+
+    add_p(doc, "3.5 Расчет площади оконных проемов и количества окон для одностороннего освещения")
+    add_p(doc, "Подставляя полученные коэффициенты в основную расчетную формулу (1), находим требуемую суммарную площадь световых проемов:")
+    add_formula_block(doc, "S0 = (200,0 · 2,0 · 16,57 · 1,40) / (100 · 0,40 · 2,86) = 9279,2 / 114,4 = 81,11 м².")
+    add_p(doc, "Площадь одного светового проема при размерах окна h0 = 3,5 м и b0 = 2,0 м равна:")
+    add_formula_block(doc, "S_окна = h0 · b0 = 3,5 · 2,0 = 7,00 м².")
+    add_p(doc, "Расчетное число оконных проемов составляет:")
+    add_formula_block(doc, "n_точн = S0 / S_окна = 81,11 / 7,00 = 11,59 шт.")
+    add_p(doc, "Принимаем ближайшее целое число окон: n = 12 шт.")
+    add_p(doc, "Величина межоконного промежутка b при размещении n окон по длине стены A = 20,0 м определяется по формуле:")
+    add_formula_block(doc, "b = (A - n · b0) / (n + 1),", "4")
+    add_formula_block(doc, "b = (20,0 - 12 · 2,0) / (12 + 1) = (20,0 - 24,0) / 13 = -4,0 / 13 = -0,31 м.")
 
     # ==============================================================================
-    # 4. ИНЖЕНЕРНЫЙ АНАЛИЗ И ВЫБОР СХЕМЫ РАЗМЕЩЕНИЯ ОКОН
+    # 4. ИНЖЕНЕРНЫЙ АНАЛИЗ И ВЫБОР РАЦИОНАЛЬНОЙ СХЕМЫ ОСВЕЩЕНИЯ
     # ==============================================================================
-    add_heading_styled(doc, "4. Инженерный анализ и выбор рациональной схемы освещения", level=1)
+    add_section_heading(doc, "4 Инженерный анализ и выбор рациональной схемы освещения")
 
-    p_an1 = doc.add_paragraph()
-    format_paragraph(p_an1)
-    p_an1.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    r = p_an1.add_run(
-        "Анализ односторонней схемы освещения:\n"
-        f"Принятое расчетное число окон n = {res.n_single} шт. при ширине каждого окна b0 = 2,0 м "
-        f"требует суммарной ширины остекления {res.n_single * params.b0:.1f} м, что превышает общую "
-        f"длину наружной стены помещения A = 20,0 м. Значение межоконного промежутка получилось отрицательным "
-        f"(b = {res.b_single:.2f} м). Это означает, что физически разместить необходимое количество световых "
-        f"проемов в один ряд по одной продольной стене НЕВОЗМОЖНО."
-    )
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(12)
+    add_p(doc, 
+          "Анализ односторонней схемы освещения показывает, что полученное межоконное расстояние является "
+          "отрицательным (b = -0,31 м). Суммарная ширина 12 оконных проемов составляет 12 · 2,0 = 24,0 м, "
+          "что превышает общую строительную длину наружной стены здания A = 20,0 м. Следовательно, "
+          "физически разместить необходимое число световых проемов в один ряд по одной наружной стене НЕВОЗМОЖНО.")
 
-    p_an2 = doc.add_paragraph()
-    format_paragraph(p_an2)
-    p_an2.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    r = p_an2.add_run(
-        "Инженерное решение — переход на двустороннее боковое освещение:\n"
-        "Для обеспечения нормативной освещенности глубокого зала (B = 10 м) и равномерного распределения "
-        "светового потока целесообразно организовать световые проемы в двух противоположных наружных стенах. "
-        "При двустороннем освещении нормативный коэффициент r1 по Таблице 4.6 снижается до r1 = 1,70, "
-        "что отражает более глубокое взаимное проникновение света с обеих сторон:\n"
-        f"S0_двуст = ({res.S_floor:.1f} × {res.l_min:.1f} × {res.eta0:.2f} × {res.K_zd:.2f}) / (100 × {res.r0:.2f} × {res.r1_double:.2f}) = {res.S0_double:.2f} м².\n"
-        f"Расчетное число окон для двух стен: n_точн = {res.S0_double:.2f} / 7,0 = {res.n_exact_double:.2f} шт.\n"
-        f"Принимаем четное число окон для симметричного размещения: n = {res.n_double} шт. (по {res.n_per_wall} окон на каждой стене).\n"
-        f"Межоконное расстояние на каждой из двух стен длиной 20 м составит:\n"
-        f"b = (A - {res.n_per_wall} × b0) / ({res.n_per_wall} + 1) = (20,0 - {res.n_per_wall * params.b0:.1f}) / {res.n_per_wall + 1} = {res.b_double:.2f} м.\n"
-        f"Величина межоконного простенка b = {res.b_double:.2f} м обеспечивает высокую конструктивную надежность "
-        f"несущих простенков здания и равномерность естественного освещения рабочего пространства."
-    )
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(12)
+    add_p(doc, 
+          "Для глубокого производственного зала (ширина B = 10,0 м) одностороннее боковое освещение "
+          "также является нерациональным из-за резкого спада естественной освещенности по мере удаления "
+          "от окон в глубину помещения. В связи с этим рассматривается переход на двустороннее боковое освещение.")
 
-    # Сводная таблица сравнения схем
-    table_comp = doc.add_table(rows=6, cols=3)
-    table_comp.alignment = WD_TABLE_ALIGNMENT.CENTER
-    set_table_borders(table_comp)
+    add_p(doc, 
+          "При двустороннем боковом освещении расчетная точка минимальной освещенности располагается "
+          "в центре зала на расстоянии B / 2 = 5,0 м от наружных стен. Вследствие этого расчетное отношение "
+          "глубины к высоте окна составляет (B / 2) / h1 = 5,0 / 3,50 = 1,43, что снижает световую характеристику окна "
+          "до η0 = 10,00. Коэффициент отраженного света для двусторонней схемы составляет r1 = 1,70.")
 
-    comp_headers = table_comp.rows[0].cells
-    comp_headers[0].text = "Показатель"
-    comp_headers[1].text = "Одностороннее освещение"
-    comp_headers[2].text = "Двустороннее освещение (рекомендовано)"
-    for cell in comp_headers:
-        set_cell_background(cell, "E8EEF5")
-        for p in cell.paragraphs:
-            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            for run in p.runs:
-                run.font.name = "Times New Roman"
-                run.font.bold = True
-                run.font.size = Pt(11)
+    add_p(doc, "Требуемая суммарная площадь световых проемов для двусторонней схемы:")
+    add_formula_block(doc, "S0_двуст = (200,0 · 2,0 · 10,00 · 1,40) / (100 · 0,40 · 1,70) = 5600,0 / 68,0 = 82,35 м².")
+    add_p(doc, "Расчетное количество окон:")
+    add_formula_block(doc, "n_точн = 82,35 / 7,00 = 11,76 шт.")
+    add_p(doc, 
+          "Для обеспечения геометрической и световой симметрии принимается четное число окон n = 12 шт., "
+          "которые равномерно распределяются по двум противоположным наружным стенам (по 6 окон на каждую стену).")
+    
+    add_p(doc, "Межоконное расстояние на каждой из продольных стен длиной 20,0 м составляет:")
+    add_formula_block(doc, "b = (A - n_ст · b0) / (n_ст + 1) = (20,0 - 6 · 2,0) / (6 + 1) = (20,0 - 12,0) / 7 = 8,0 / 7 = 1,14 м.")
 
-    comp_rows = [
-        ("Коэффициент отраженного света r1", f"{res.r1_single:.2f}", f"{res.r1_double:.2f}"),
-        ("Требуемая площадь остекления S0", f"{res.S0_single:.2f} м²", f"{res.S0_double:.2f} м²"),
-        ("Принятое число окон n", f"{res.n_single} шт. (на 1 стену)", f"{res.n_double} шт. (по {res.n_per_wall} шт. на 2 стены)"),
-        ("Межоконный промежуток b", f"{res.b_single:.2f} м (не реализуемо)", f"{res.b_double:.2f} м (оптимально)"),
-        ("Равномерность освещенности", "Низкая (затухание света к дальней стене)", "Высокая (перекрестное освещение)")
+    add_p(doc, 
+          "Значение b = 1,14 м удовлетворяет строительным требованиям по обеспечению достаточной прочности "
+          "несущих кирпичных или железобетонных простенков наружных стен и гарантирует равномерное двустороннее "
+          "освещение всего рабочего пространства аппаратного зала.")
+
+    # Таблица 2: Сравнение вариантов
+    add_p(doc, "Таблица 2 – Сравнительный анализ схем организации естественного освещения", space_before=6, space_after=4, align=WD_ALIGN_PARAGRAPH.LEFT, indent=1.25)
+    
+    table2 = doc.add_table(rows=7, cols=3)
+    table2.alignment = WD_TABLE_ALIGNMENT.CENTER
+    set_table_gost_borders(table2)
+
+    t2_headers = ["Параметр схемы освещения", "Одностороннее боковое освещение", "Двустороннее боковое освещение (рекомендовано)"]
+    for c_i, name in enumerate(t2_headers):
+        cell = table2.cell(0, c_i)
+        p = cell.paragraphs[0]
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.line_spacing = 1.0
+        p.paragraph_format.space_before = Pt(3)
+        p.paragraph_format.space_after = Pt(3)
+        p.paragraph_format.first_line_indent = Cm(0)
+        run = p.add_run(name)
+        run.font.name = "Times New Roman"
+        run.font.size = Pt(12)
+        run.font.bold = True
+        run.font.color.rgb = RGBColor(0, 0, 0)
+    set_row_cant_split(table2.rows[0])
+
+    t2_rows = [
+        ("Световая характеристика окон η0", "16,57", "10,00"),
+        ("Коэффициент отраженного света r1", "2,86", "1,70"),
+        ("Требуемая площадь остекления S0", "81,11 м²", "82,35 м²"),
+        ("Число оконных проемов n", "12 шт. (в 1 ряд)", "12 шт. (по 6 шт. на две стены)"),
+        ("Межоконный промежуток b", "-0,31 м (не помещаются)", "+1,14 м (оптимально)"),
+        ("Конструктивная реализуемость", "Не реализуемо", "Полностью реализуемо, надежно")
     ]
 
-    for idx, (param, val1, val2) in enumerate(comp_rows):
-        row_cells = table_comp.rows[idx + 1].cells
-        row_cells[0].text = param
-        row_cells[1].text = val1
-        row_cells[2].text = val2
-        for c_idx, cell in enumerate(row_cells):
-            for p in cell.paragraphs:
-                p.alignment = WD_ALIGN_PARAGRAPH.CENTER if c_idx > 0 else WD_ALIGN_PARAGRAPH.LEFT
-                for run in p.runs:
-                    run.font.name = "Times New Roman"
-                    run.font.size = Pt(10)
+    for r_idx, row_data in enumerate(t2_rows):
+        row = table2.rows[r_idx + 1]
+        set_row_cant_split(row)
+        for c_idx, val in enumerate(row_data):
+            cell = row.cells[c_idx]
+            p = cell.paragraphs[0]
+            p.alignment = WD_ALIGN_PARAGRAPH.CENTER if c_idx > 0 else WD_ALIGN_PARAGRAPH.LEFT
+            p.paragraph_format.line_spacing = 1.0
+            p.paragraph_format.space_before = Pt(3)
+            p.paragraph_format.space_after = Pt(3)
+            p.paragraph_format.first_line_indent = Cm(0)
+            run = p.add_run(val)
+            run.font.name = "Times New Roman"
+            run.font.size = Pt(12)
+            run.font.color.rgb = RGBColor(0, 0, 0)
 
     # ==============================================================================
     # 5. ОТВЕТЫ НА КОНТРОЛЬНЫЕ ВОПРОСЫ
     # ==============================================================================
-    add_heading_styled(doc, "5. Ответы на контрольные вопросы", level=1)
+    add_section_heading(doc, "5 Ответы на контрольные вопросы")
 
-    questions = [
+    questions_data = [
         (
-            "Вопрос 1: Как нормируется естественная освещенность?",
-            "Ответ: Естественная освещенность нормируется в относительных единицах — через коэффициент "
-            "естественной освещенности (КЕО, e_N, выражается в процентах). КЕО представляет собой отношение "
-            "естественной освещенности, создаваемой в некоторой точке заданной плоскости внутри помещения "
-            "светом неба (непосредственно или после отражений), к одновременному значению наружной горизонтальной "
-            "освещенности, создаваемой светом полностью открытого небосвода: e = (E_внут / E_нар) × 100%. "
-            "Нормирование в относительных величинах обусловлено непрерывным изменением наружной естественной "
-            "освещенности в течение суток и сезонов года в зависимости от положения солнца и облачности."
+            "1. Как нормируется естественная освещенность?",
+            "Естественная освещенность нормируется в относительных величинах посредством коэффициента "
+            "естественной освещенности (КЕО), обозначаемого l (или e) и выражаемого в процентах. "
+            "КЕО представляет собой процентное отношение естественной освещенности E_внут, создаваемой "
+            "в расчетной точке внутри помещения светом неба (прямым или после отражений), к одновременной "
+            "наружной горизонтальной освещенности E_нар, создаваемой светом полностью открытого небосвода:\\n"
+            "e = (E_внут / E_нар) · 100 %.\\n"
+            "Нормирование в относительных единицах обусловлено тем, что абсолютная наружная освещенность "
+            "непрерывно меняется в широких пределах в зависимости от времени суток, сезона года и облачности, "
+            "тогда как отношение внутренней освещенности к наружной остается относительно постоянной величиной."
         ),
         (
-            "Вопрос 2: Какие виды естественного освещения вы знаете?",
-            "Ответ: В соответствии со строительными нормами различают три основных вида естественного освещения:\n"
-            "1. Боковое освещение — осуществляется через световые проемы (окна) в наружных стенах здания. "
-            "Может быть односторонним (окна на одной стене) или двусторонним (окна на противоположных или смежных стенах).\n"
-            "2. Верхнее освещение — осуществляется через световые аэрационные или зенитные фонари, проемы в перекрытиях "
-            "и светопрозрачные конструкции кровли.\n"
-            "3. Комбинированное (смешанное) освещение — сочетание бокового и верхнего естественного освещения, "
-            "обеспечивающее наиболее высокую освещенность и равномерность в крупногабаритных производственных цехах."
+            "2. Какие виды естественного освещения вы знаете?",
+            "В соответствии со строительными нормами и правилами СП 52.13330 различают три основных вида естественного освещения:\\n"
+            "1) Боковое освещение – осуществляется через световые проемы (окна) в наружных стенах здания. "
+            "Подразделяется на одностороннее (окна расположены в одной наружной стене) и двустороннее "
+            "(окна расположены в двух противоположных или смежных наружных стенах);\\n"
+            "2) Верхнее освещение – осуществляется через световые фонари (зенитные, шедовые, аэрационные) "
+            "в покрытиях зданий, а также через проемы в перекрытиях верхних этажей;\\n"
+            "3) Комбинированное (смешанное) освещение – представляет собой сочетание бокового и верхнего "
+            "естественного освещения, обеспечивающее наилучшую освещенность и равномерность в производственных "
+            "помещениях больших геометрических размеров."
         ),
         (
-            "Вопрос 3: Какие требования предъявляются к системам производственного освещения?",
-            "Ответ: К производственному освещению предъявляются следующие обязательные санитарно-гигиенические "
-            "и технико-экономические требования:\n"
-            "• Обеспечение нормативного уровня освещенности на рабочих поверхностях в соответствии с разрядом зрительной работы;\n"
-            "• Равномерное распределение яркости в поле зрения и исключение резких теней на рабочих местах;\n"
-            "• Отсутствие прямой и отраженной слепящей блесткости (ограничение показателя ослепленности);\n"
-            "• Постоянство освещенности во времени (отсутствие стробоскопического эффекта и пульсаций светового потока);\n"
-            "• Обеспечение правильной цветопередачи и спектрального состава света, близкого к естественному;\n"
-            "• Пожаро- и электробезопасность осветительных установок, надежность, удобство эксплуатации и энергоэффективность."
+            "3. Какие требования предъявляются к системам производственного освещения?",
+            "К системам производственного освещения предъявляются следующие обязательные требования:\\n"
+            "• Освещенность на рабочих местах должна строго соответствовать установленным санитарным "
+            "нормам для данного разряда зрительной работы;\\n"
+            "• Обеспечение постоянства освещенности во времени, исключение пульсаций светового потока и "
+            "стробоскопического эффекта при работе вращающихся механизмов;\\n"
+            "• Равномерное распределение яркости в поле зрения и ограничение слепящего действия "
+            "(устранение прямой и отраженной блесткости);\\n"
+            "• Обеспечение благоприятного спектрального состава света, максимально приближенного к естественному дневному;\\n"
+            "• Отсутствие глубоких и резких теней на рабочих поверхностях оборудования;\\n"
+            "• Электро-, пожаро- и взрывобезопасность осветительных установок, надежность и простота обслуживания."
         ),
         (
-            "Вопрос 4: По каким параметрам определяется разряд зрительной работы?",
-            "Ответ: Разряд зрительной работы определяется по СП 52.13330 (СНиП 23-05-95) исходя из следующих параметров:\n"
-            "1. Наименьший эквивалентный размер объекта различения (в миллиметрах). Например: до 0,15 мм — разряд I (наивысшая точность); "
-            "от 0,15 до 0,3 мм — разряд II (очень высокая точность); от 0,3 до 0,5 мм — разряд III (высокая точность, как в варианте 6); "
-            "от 0,5 до 1 мм — разряд IV (средняя точность); более 5 мм — разряд VI (грубая работа).\n"
-            "2. Контраст объекта различения с фоном (малый, средний, большой), определяемый соотношением яркостей объекта и фона.\n"
-            "3. Характеристика фона (светлый, средний, темный) в зависимости от коэффициента отражения поверхности фона."
+            "4. По каким параметрам определяется разряд зрительной работы?",
+            "Разряд зрительной работы определяется в соответствии с нормативными таблицами СП 52.13330 (СНиП 23-05-95) "
+            "по следующим основным критериям:\\n"
+            "1) Наименьший эквивалентный размер объекта различения (в миллиметрах). Установлены разряды "
+            "от I (наивысшая точность, размер объекта менее 0,15 мм) до VI (грубая работа, объект более 5 мм);\\n"
+            "2) Контраст объекта различения с фоном, вычисляемый по формуле K = |B_о - B_ф| / B_ф "
+            "(различают большой контраст при K > 0,5, средний при K = 0,2...0,5 и малый при K < 0,2);\\n"
+            "3) Характеристика фона (светлый при коэффициенте отражения фона ρ > 0,4, средний при ρ = 0,2...0,4 "
+            "и темный при ρ < 0,2)."
         ),
         (
-            "Вопрос 5: Что характеризует «спектральная видность», в чем заключается ее особенность? Энергетические и фотометрические величины.",
-            "Ответ: Спектральная чувствительность глаза (относительная спектральная световая эффективность, или спектральная видность V(λ)) "
-            "характеризует избирательную чувствительность человеческого зрительного анализатора к электромагнитному излучению "
-            "различных длин волн оптического диапазона при одинаковой мощности лучистого потока.\n"
-            "Особенность: максимум чувствительности глаза в условиях дневного (колбочкового) зрения приходится на длину волны λ = 555 нм "
-            "(желто-зеленая область спектра). При сумеречном (палочковом) зрении максимум сдвигается в сине-зеленую область (λ = 507 нм, эффект Пуркинье).\n"
-            "Связь величин:\n"
-            "• Энергетические величины характеризуют излучение безотносительно зрительного восприятия человека в абсолютных энергетических единицах "
-            "(поток излучения Ф_е в ваттах Вт, энергетическая светимость Вт/м², энергетическая яркость Вт/(ср·м²)).\n"
-            "• Фотометрические (световые) величины оценивают воздействие оптического излучения на орган зрения с учетом спектральной чувствительности V(λ): "
-            "световой поток Ф измеряется в люменах (лм), освещенность E — в люксах (лк = лм/м²), сила света I — в канделах (кд), яркость L — в кд/м²."
+            "5. Что характеризует «спектральная видность», в чем заключается ее особенность? Энергетические и фотометрические величины.",
+            "Спектральная чувствительность органа зрения (спектральная видность, или функция V(λ)) "
+            "характеризует избирательную чувствительность человеческого глаза к электромагнитному излучению "
+            "различных длин волн оптического диапазона при одинаковой мощности светового потока.\\n"
+            "Особенность заключается в том, что в условиях дневного (колбочкового) зрения максимум "
+            "чувствительности человеческого глаза соответствует длине волны λ = 555 нм (желто-зеленая часть спектра). "
+            "В условиях ночного или сумеречного (палочкового) зрения максимум чувствительности смещается в сторону "
+            "более коротких волн к значению λ = 507 нм (явление Пуркинье).\\n"
+            "Различие величин:\\n"
+            "• Энергетические величины характеризуют излучение чисто физически независимо от зрительного "
+            "восприятия человека: лучистый поток Ф_e (ватт, Вт), энергетическая освещенность (облученность, Вт/м²), "
+            "сила излучения (Вт/ср), энергетическая яркость (Вт/(ср·м²));\\n"
+            "• Фотометрические (световые) величины оценивают излучение по его зрительному воздействию "
+            "с учетом спектральной видности глаза: световой поток Ф (люмен, лм), освещенность E (люкс, лк), "
+            "сила света I (кандела, кд), яркость L (кд/м²)."
         )
     ]
 
-    for q, ans in questions:
-        p_q = doc.add_paragraph()
-        format_paragraph(p_q, space_before=6, space_after=2, first_indent=0)
-        rq = p_q.add_run(q)
-        rq.font.name = "Times New Roman"
-        rq.font.bold = True
-        rq.font.size = Pt(12)
-        rq.font.color.rgb = RGBColor(24, 43, 73)
-
-        p_a = doc.add_paragraph()
-        format_paragraph(p_a, space_before=0, space_after=8, first_indent=0.49)
-        p_a.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-        ra = p_a.add_run(ans)
-        ra.font.name = "Times New Roman"
-        ra.font.size = Pt(11)
+    for q_title, q_ans in questions_data:
+        add_p(doc, q_title, space_before=6, space_after=2, bold=True)
+        # разбиваем ответ по \n, чтобы каждый абзац форматировался аккуратно и без растяжки строк
+        for part in q_ans.split("\\n"):
+            if part.strip():
+                add_p(doc, part.strip(), space_before=0, space_after=4)
 
     # ==============================================================================
     # 6. ВЫВОДЫ
     # ==============================================================================
-    add_heading_styled(doc, "6. Выводы", level=1)
+    add_section_heading(doc, "6 Выводы")
 
-    p_concl = doc.add_paragraph()
-    format_paragraph(p_concl)
-    p_concl.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    r = p_concl.add_run(
-        f"1. В ходе выполнения лабораторной работы № 1 освоена методика расчета систем естественного освещения "
-        f"производственных помещений связи и IT-инфраструктуры по СП 52.13330 (СНиП 23-05-95).\n"
-        f"2. Для аппаратного зала телеграфа размерами 20 × 10 × 5 м (III разряд зрительной работы, КЕО l_min = 2,0%) "
-        f"выполнен полный пошаговый расчет световых параметров с учетом затенения противостоящим зданием (K_зд = {res.K_zd:.2f}), "
-        f"светопропускания окон (r0 = {res.r0:.2f}) и отражающих свойств поверхностей (ρ_ср = {res.rho_avg*100:.1f}%, r1 = {res.r1_single:.2f}).\n"
-        f"3. Расчет показал, что для одностороннего бокового освещения требуемая площадь остекления составляет S0 = {res.S0_single:.2f} м², "
-        f"что соответствует n = {res.n_single} окнам шириной по 2,0 м. Суммарная ширина оконных проемов ({res.n_single * params.b0:.1f} м) "
-        f"превышает длину стены здания (20,0 м), что делает одностороннюю схему физически нереализуемой (b = {res.b_single:.2f} м < 0).\n"
-        f"4. Предложено рациональное инженерное решение: перейти на двустороннее боковое освещение. "
-        f"При двусторонней схеме (r1 = {res.r1_double:.2f}) требуемая площадь окон составляет S0 = {res.S0_double:.2f} м², "
-        f"что реализуется установкой {res.n_double} окон (по {res.n_per_wall} окон на каждой продольной стене). "
-        f"Межоконный промежуток составляет b = {res.b_double:.2f} м, что обеспечивает конструктивную прочность простенков, "
-        f"высокую равномерность естественной освещенности рабочих мест и соблюдение требований охраны труда."
-    )
-    r.font.name = "Times New Roman"
-    r.font.size = Pt(12)
+    add_p(doc, 
+          "1. В ходе выполнения лабораторной работы изучены нормативные положения СП 52.13330 (СНиП 23-05-95) "
+          "и освоена инженерная методика расчета естественного освещения производственных помещений связи.")
+
+    add_p(doc, 
+          "2. Для аппаратного зала размерами 20,0 × 10,0 × 5,0 м (III разряд зрительной работы, нормированный КЕО l_min = 2,0 %) "
+          "рассчитаны геометрические параметры (h1 = 3,50 м, A / B = 2,00, B / h1 = 2,86, L / H = 1,00) "
+          "и определены нормативные коэффициенты (η0 = 16,57, K_зд = 1,40, r0 = 0,40, ρ_ср = 38,6 %, r1 = 2,86).")
+
+    add_p(doc, 
+          "3. Расчет односторонней схемы освещения показал, что требуемая площадь остекления составляет S0 = 81,11 м², "
+          "что соответствует установке 12 оконных проемов размером 3,5 × 2,0 м. При общей ширине окон 24,0 м они физически "
+          "не помещаются на наружной стене длиной 20,0 м (межоконный промежуток b = -0,31 м < 0).")
+
+    add_p(doc, 
+          "4. Разработано рациональное инженерное решение по переходу на двустороннее боковое освещение. "
+          "При двусторонней схеме (r1 = 1,70, η0 = 10,00) требуемая площадь остекления составляет 82,35 м² (12 окон). "
+          "Размещение по 6 окон на двух противоположных продольных стенах обеспечивает оптимальный шаг простенков "
+          "b = 1,14 м, достаточную несущую способность строительных конструкций и равномерное распределение "
+          "светового потока по всей глубине зала без образования теневых зон.")
 
     # ==============================================================================
     # 7. СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ
     # ==============================================================================
-    add_heading_styled(doc, "7. Список использованных источников", level=1)
+    add_section_heading(doc, "7 Список использованных источников")
 
     sources = [
-        "1. Курбатов В.А. Расчёт естественной освещённости в производственном помещении: Учебно-методическое пособие по курсу «Безопасность жизнедеятельности» / В.А. Курбатов. — М.: МТУСИ, 2022. — 24 с.",
-        "2. СП 52.13330.2016. Естественное и искусственное освещение. Актуализированная редакция СНиП 23-05-95*. — М.: Минстрой России, 2016.",
-        "3. СанПиН 1.2.3685-21. Гигиенические нормативы и требования к обеспечению безопасности и (или) безвредности для человека факторов среды обитания.",
-        "4. ГОСТ 12.1.046-2014. Система стандартов безопасности труда. Строительство. Нормы освещения строительных площадок.",
-        "5. ГОСТ 7.32-2017. Система стандартов по информации, библиотечному и издательскому делу. Отчет о научно-исследовательской работе. Структура и правила оформления."
+        "1. Курбатов В.А. Расчет естественной освещенности в производственном помещении: Учебно-методическое пособие по курсу «Безопасность жизнедеятельности» / В.А. Курбатов. – М.: МТУСИ, 2022. – 24 с.",
+        "2. СП 52.13330.2016. Естественное и искусственное освещение. Актуализированная редакция СНиП 23-05-95*. – М.: Минстрой России, 2016. – 118 с.",
+        "3. СанПиН 1.2.3685-21. Гигиенические нормативы и требования к обеспечению безопасности и (или) безвредности для человека факторов среды обитания. – М.: Федеральный центр гигиены и эпидемиологии Роспотребнадзора, 2021. – 472 с.",
+        "4. ГОСТ 12.1.046-2014. Система стандартов безопасности труда. Строительство. Нормы освещения строительных площадок. – М.: Стандартинформ, 2015. – 12 с.",
+        "5. ГОСТ 7.32-2017. Система стандартов по информации, библиотечному и издательскому делу. Отчет о научно-исследовательской работе. Структура и правила оформления. – М.: Стандартинформ, 2017. – 28 с."
     ]
 
-    for src in sources:
-        p_s = doc.add_paragraph()
-        format_paragraph(p_s, space_before=2, space_after=4, first_indent=0.49)
-        p_s.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-        rs = p_s.add_run(src)
-        rs.font.name = "Times New Roman"
-        rs.font.size = Pt(11)
+    for s_idx, src in enumerate(sources):
+        add_p(doc, src, space_before=2, space_after=2, indent=1.25)
 
-    target_docx = os.path.join(DOCS_DIR, "Отчет_ЛР1_Смирнов_БСТ2556.docx")
-    doc.save(target_docx)
-    print(f"Report successfully generated at: {target_docx}")
+    target_path = os.path.join(DOCS_DIR, "Отчет_ЛР1_Смирнов_БСТ2556.docx")
+    doc.save(target_path)
+    print(f"ГОСТ-отчет успешно сохранен: {target_path}")
 
 
 if __name__ == "__main__":
-    build_docx_report()
+    generate_gost_report()
