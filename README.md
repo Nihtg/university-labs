@@ -52,7 +52,7 @@
 | **ЛР 2** | Лабораторная работа | **Защита от СВЧ излучения** | [`src/`](information-ecology/lab-02-microwave-protection/src/) | [`docs/`](information-ecology/lab-02-microwave-protection/docs/) | 🔵 Готово к сдаче (ГОСТ 7.32) |
 | **ЛР 3** | Лабораторная работа | **Исследование шумовых параметров рабочей зоны** | [`src/`](information-ecology/lab-03-noise-parameters/src/) | [`docs/`](information-ecology/lab-03-noise-parameters/docs/) | 🔵 Готово к сдаче (ГОСТ 7.32) |
 | **Лекции** | Конспекты | **Лекции №1 и №2** («Основы экологии», «Глобальные экопроблемы») | — | [`lectures/`](information-ecology/lectures/) | 🔵 Готово к сдаче |
-| **Зачёт** | Подготовка | Полные развернутые ответы к зачету (Билеты 1–39) | — | [`exam-prep/`](information-ecology/exam-prep/) | 🔵 Готово к сдаче |
+| **Зачёт** | Подготовка | Полные 5-минутные развернутые ответы к зачету (все 63 вопроса, Части 1–4) | — | [`exam-prep/`](information-ecology/exam-prep/) | 🔵 Готово к сдаче |
 | **Тесты** | Тестирование | База вопросов и эталонов ответов онлайн-тестирования | — | [`exam-prep/`](information-ecology/exam-prep/) | 🔵 Готово к сдаче |
 
 **Легенда статусов:**
