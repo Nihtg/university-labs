@@ -51,7 +51,7 @@
 | :-: | :--- | :--- | :---: | :---: | :-: |
 | **ЛР 1** | Лабораторная работа | **Расчёт естественной освещённости в производственном помещении** | [`src/`](information-ecology/lab-01-natural-lighting/src/) | [`docs/`](information-ecology/lab-01-natural-lighting/docs/) | 🟢 Выполнено (ГОСТ 7.32) |
 | **ЛР 2** | Лабораторная работа | **Защита от СВЧ излучения** | [`src/`](information-ecology/lab-02-microwave-protection/src/) | [`docs/`](information-ecology/lab-02-microwave-protection/docs/) | 🟢 Выполнено (ГОСТ 7.32) |
-| **ЛР 3** | Лабораторная работа | **Исследование шумовых параметров рабочей зоны** | [`src/`](information-ecology/lab-03-noise-parameters/src/) | [`docs/`](information-ecology/lab-03-noise-parameters/docs/) | ⚪ Запланировано |
+| **ЛР 3** | Лабораторная работа | **Исследование шумовых параметров рабочей зоны** | [`src/`](information-ecology/lab-03-noise-parameters/src/) | [`docs/`](information-ecology/lab-03-noise-parameters/docs/) | 🟢 Выполнено (ГОСТ 7.32) |
 | **Лекции** | Конспекты | Лекция №2: «Глобальные экологические проблемы современности» | — | [`lectures/`](information-ecology/lectures/) | ⚪ В процессе |
 | **Зачёт** | Подготовка | Вопросы к зачёту по информационной экологии | — | [`exam-prep/`](information-ecology/exam-prep/) | ⚪ Запланировано |
 | **Тесты** | Тестирование | Онлайн-тестирование по курсу дисциплины | — | [`exam-prep/`](information-ecology/exam-prep/) | ⚪ Запланировано |
