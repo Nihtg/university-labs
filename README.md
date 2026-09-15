@@ -23,18 +23,18 @@
 
 ## 📚 Учебный план и дисциплины (3 семестр)
 
-| № | Дисциплина | Трудоемкость (ЗЕТ) | Академические часы | Форма контроля | Директория | Ветка в Git |
-| :-: | :--- | :-: | :--- | :-: | :--- | :--- |
-| 1 | **Программная инженерия** | 4 ЗЕТ | Лек. 4 ч., Прак. 8 ч., Сам. 95 ч., Конт.сес. 4 ч., Конт.ин. 1 ч. | **Экзамен** | [`software-engineering/`](software-engineering/) | [`subject/software-engineering`](https://github.com/Nihtg/university-labs/tree/subject/software-engineering) |
-| 2 | **Проектная деятельность** | 1 ЗЕТ | Прак. 8 ч., Сам. 27 ч., Конт.ин. 1 ч. | **Зачёт** | [`project-activity/`](project-activity/) | [`subject/project-activity`](https://github.com/Nihtg/university-labs/tree/subject/project-activity) |
-| 3 | **Иностранный язык** | 2 ЗЕТ | Прак. 8 ч., Сам. 63 ч., Конт.ин. 1 ч. | **Зачёт** | [`foreign-language/`](foreign-language/) | [`subject/foreign-language`](https://github.com/Nihtg/university-labs/tree/subject/foreign-language) |
-| 4 | **История России** | 2 ЗЕТ | Лек. 18 ч., Прак. 12 ч., Сам. 41 ч., Конт.ин. 1 ч. | **Дифференцированный зачёт** | [`russian-history/`](russian-history/) | [`subject/russian-history`](https://github.com/Nihtg/university-labs/tree/subject/russian-history) |
-| 5 | **Русский язык как иностранный** | 2 ЗЕТ | Прак. 64 ч., Сам. 8 ч. | **Зачёт** | [`russian-as-foreign/`](russian-as-foreign/) | [`subject/russian-as-foreign`](https://github.com/Nihtg/university-labs/tree/subject/russian-as-foreign) |
-| 6 | **Философия** | 4 ЗЕТ | Лек. 6 ч., Прак. 6 ч., Сам. 131 ч., Конт.ин. 1 ч. | **Дифференцированный зачёт** | [`philosophy/`](philosophy/) | [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy) |
-| 7 | **Экономика** | 2 ЗЕТ | Лек. 4 ч., Прак. 4 ч., Сам. 63 ч., Конт.ин. 1 ч. | **Зачёт** | [`economics/`](economics/) | [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
-| 8 | **Информационная экология** | 2 ЗЕТ | Лек. 4 ч., Лаб. 6 ч., Сам. 61 ч., Конт.ин. 1 ч. | **Зачёт** | [`information-ecology/`](information-ecology/) | [`main`](https://github.com/Nihtg/university-labs/tree/main), [`subject/info-ecology`](https://github.com/Nihtg/university-labs/tree/subject/info-ecology) |
-| 9 | **Высшая математика** | 5 ЗЕТ | Лек. 8 ч., Прак. 8 ч., Сам. 127 ч., Конт.сес. 4 ч., Конт.ин. 1 ч. | **Экзамен** | [`higher-math/`](higher-math/) | [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
-| 10 | **Математическая логика и теория алгоритмов** | 3 ЗЕТ | Лек. 4 ч., Прак. 8 ч., Сам. 94 ч., Конт.ин. 2 ч. | **Зачёт** | [`math-logic/`](math-logic/) | [`subject/math-logic`](https://github.com/Nihtg/university-labs/tree/subject/math-logic) |
+| № | Дисциплина | Трудоемкость (ЗЕТ) | Форма контроля | Директория | Ветка в Git |
+| :-: | :--- | :-: | :-: | :--- | :--- |
+| 1 | **Программная инженерия** | 4 ЗЕТ | **Экзамен** | [`software-engineering/`](software-engineering/) | [`subject/software-engineering`](https://github.com/Nihtg/university-labs/tree/subject/software-engineering) |
+| 2 | **Проектная деятельность** | 1 ЗЕТ | **Зачёт** | [`project-activity/`](project-activity/) | [`subject/project-activity`](https://github.com/Nihtg/university-labs/tree/subject/project-activity) |
+| 3 | **Иностранный язык** | 2 ЗЕТ | **Зачёт** | [`foreign-language/`](foreign-language/) | [`subject/foreign-language`](https://github.com/Nihtg/university-labs/tree/subject/foreign-language) |
+| 4 | **История России** | 2 ЗЕТ | **Дифференцированный зачёт** | [`russian-history/`](russian-history/) | [`subject/russian-history`](https://github.com/Nihtg/university-labs/tree/subject/russian-history) |
+| 5 | **Русский язык как иностранный** | 2 ЗЕТ | **Зачёт** | [`russian-as-foreign/`](russian-as-foreign/) | [`subject/russian-as-foreign`](https://github.com/Nihtg/university-labs/tree/subject/russian-as-foreign) |
+| 6 | **Философия** | 4 ЗЕТ | **Дифференцированный зачёт** | [`philosophy/`](philosophy/) | [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy) |
+| 7 | **Экономика** | 2 ЗЕТ | **Зачёт** | [`economics/`](economics/) | [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
+| 8 | **Информационная экология** | 2 ЗЕТ | **Зачёт** | [`information-ecology/`](information-ecology/) | [`main`](https://github.com/Nihtg/university-labs/tree/main), [`subject/info-ecology`](https://github.com/Nihtg/university-labs/tree/subject/info-ecology) |
+| 9 | **Высшая математика** | 5 ЗЕТ | **Экзамен** | [`higher-math/`](higher-math/) | [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
+| 10 | **Математическая логика и теория алгоритмов** | 3 ЗЕТ | **Зачёт** | [`math-logic/`](math-logic/) | [`subject/math-logic`](https://github.com/Nihtg/university-labs/tree/subject/math-logic) |
 
 ---
 
