@@ -12,7 +12,7 @@
 | **Университет** | Московский технический университет связи и информатики (МТУСИ) |
 | **Подразделение** | Центр заочного обучения по программам бакалавриата |
 | **Группа** | **БСТ2556** |
-| **Курс** | **Второй (2 курс)** |
+| **Курс / Семестр** | **Второй (2 курс) / 3 семестр** |
 | **Зачетная книжка** | **ЗБСТ25066** |
 | **Специальность / Направление** | 09.03.02 Информационные системы и технологии |
 | **Профиль** | **Инженерия DevSecOps** |
@@ -21,21 +21,20 @@
 
 ---
 
-## 📚 Учебный план и дисциплины
+## 📚 Учебный план и дисциплины (3 семестр)
 
-| № | Дисциплина | Трудоемкость (ЗЕТ) | Форма контроля | Директория | Ветка в Git |
-| :-: | :--- | :-: | :-: | :--- | :--- |
-| 1 | **Информационная экология** | — | **Зачёт** | [`information-ecology/`](information-ecology/) | [`main`](https://github.com/Nihtg/university-labs/tree/main), [`subject/info-ecology`](https://github.com/Nihtg/university-labs/tree/subject/info-ecology) |
-| 2 | **Введение в информационные технологии** | 3 ЗЕТ | **Зачёт** | `intro-it/` | [`subject/intro-to-it`](https://github.com/Nihtg/university-labs/tree/subject/intro-to-it) |
-| 3 | **Вычислительная техника** | 4 ЗЕТ | **Экзамен** | `computer-hardware/` | [`subject/computer-engineering`](https://github.com/Nihtg/university-labs/tree/subject/computer-engineering) |
-| 4 | **Проектная деятельность** | 1 ЗЕТ | **Зачёт** | `project-activity/` | [`subject/project-activity`](https://github.com/Nihtg/university-labs/tree/subject/project-activity) |
-| 5 | **Иностранный язык** | 2 ЗЕТ | **Зачёт** | `foreign-language/` | [`subject/foreign-language`](https://github.com/Nihtg/university-labs/tree/subject/foreign-language) |
-| 6 | **Основы российской государственности** | 1 ЗЕТ | **Зачёт** | `russian-statehood/` | [`subject/russian-statehood`](https://github.com/Nihtg/university-labs/tree/subject/russian-statehood) |
-| 7 | **Русский язык и культура речи** | 2 ЗЕТ | **Зачёт** | `russian-culture/` | [`subject/russian-language-culture`](https://github.com/Nihtg/university-labs/tree/subject/russian-language-culture) |
-| 8 | **Русский язык как иностранный** | 3 ЗЕТ | — | `russian-foreign/` | [`subject/russian-as-foreign`](https://github.com/Nihtg/university-labs/tree/subject/russian-as-foreign) |
-| 9 | **Физика** | 3 ЗЕТ | **Зачёт** | `physics/` | [`subject/physics`](https://github.com/Nihtg/university-labs/tree/subject/physics) |
-| 10 | **Высшая математика** | 4 ЗЕТ | **Экзамен** | `higher-math/` | [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
-| 11 | **Линейная алгебра и аналитическая геометрия** | 4 ЗЕТ | **Экзамен** | `linear-algebra/` | [`subject/linear-algebra`](https://github.com/Nihtg/university-labs/tree/subject/linear-algebra) |
+| № | Дисциплина | Трудоемкость (ЗЕТ) | Академические часы | Форма контроля | Директория | Ветка в Git |
+| :-: | :--- | :-: | :--- | :-: | :--- | :--- |
+| 1 | **Программная инженерия** | 4 ЗЕТ | Лек. 4 ч., Прак. 8 ч., Сам. 95 ч., Конт.сес. 4 ч., Конт.ин. 1 ч. | **Экзамен** | [`software-engineering/`](software-engineering/) | [`subject/software-engineering`](https://github.com/Nihtg/university-labs/tree/subject/software-engineering) |
+| 2 | **Проектная деятельность** | 1 ЗЕТ | Прак. 8 ч., Сам. 27 ч., Конт.ин. 1 ч. | **Зачёт** | [`project-activity/`](project-activity/) | [`subject/project-activity`](https://github.com/Nihtg/university-labs/tree/subject/project-activity) |
+| 3 | **Иностранный язык** | 2 ЗЕТ | Прак. 8 ч., Сам. 63 ч., Конт.ин. 1 ч. | **Зачёт** | [`foreign-language/`](foreign-language/) | [`subject/foreign-language`](https://github.com/Nihtg/university-labs/tree/subject/foreign-language) |
+| 4 | **История России** | 2 ЗЕТ | Лек. 18 ч., Прак. 12 ч., Сам. 41 ч., Конт.ин. 1 ч. | **Дифференцированный зачёт** | [`russian-history/`](russian-history/) | [`subject/russian-history`](https://github.com/Nihtg/university-labs/tree/subject/russian-history) |
+| 5 | **Русский язык как иностранный** | 2 ЗЕТ | Прак. 64 ч., Сам. 8 ч. | **Зачёт** | [`russian-as-foreign/`](russian-as-foreign/) | [`subject/russian-as-foreign`](https://github.com/Nihtg/university-labs/tree/subject/russian-as-foreign) |
+| 6 | **Философия** | 4 ЗЕТ | Лек. 6 ч., Прак. 6 ч., Сам. 131 ч., Конт.ин. 1 ч. | **Дифференцированный зачёт** | [`philosophy/`](philosophy/) | [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy) |
+| 7 | **Экономика** | 2 ЗЕТ | Лек. 4 ч., Прак. 4 ч., Сам. 63 ч., Конт.ин. 1 ч. | **Зачёт** | [`economics/`](economics/) | [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
+| 8 | **Информационная экология** | 2 ЗЕТ | Лек. 4 ч., Лаб. 6 ч., Сам. 61 ч., Конт.ин. 1 ч. | **Зачёт** | [`information-ecology/`](information-ecology/) | [`main`](https://github.com/Nihtg/university-labs/tree/main), [`subject/info-ecology`](https://github.com/Nihtg/university-labs/tree/subject/info-ecology) |
+| 9 | **Высшая математика** | 5 ЗЕТ | Лек. 8 ч., Прак. 8 ч., Сам. 127 ч., Конт.сес. 4 ч., Конт.ин. 1 ч. | **Экзамен** | [`higher-math/`](higher-math/) | [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
+| 10 | **Математическая логика и теория алгоритмов** | 3 ЗЕТ | Лек. 4 ч., Прак. 8 ч., Сам. 94 ч., Конт.ин. 2 ч. | **Зачёт** | [`math-logic/`](math-logic/) | [`subject/math-logic`](https://github.com/Nihtg/university-labs/tree/subject/math-logic) |
 
 ---
 
@@ -53,8 +52,8 @@
 | **ЛР 2** | Лабораторная работа | **Защита от СВЧ излучения** | [`src/`](information-ecology/lab-02-microwave-protection/src/) | [`docs/`](information-ecology/lab-02-microwave-protection/docs/) | 🔵 Готово к сдаче (ГОСТ 7.32) |
 | **ЛР 3** | Лабораторная работа | **Исследование шумовых параметров рабочей зоны** | [`src/`](information-ecology/lab-03-noise-parameters/src/) | [`docs/`](information-ecology/lab-03-noise-parameters/docs/) | 🔵 Готово к сдаче (ГОСТ 7.32) |
 | **Лекции** | Конспекты | **Лекции №1 и №2** («Основы экологии», «Глобальные экопроблемы») | — | [`lectures/`](information-ecology/lectures/) | 🔵 Готово к сдаче |
-| **Зачёт** | Подготовка | Вопросы к зачёту по информационной экологии | — | [`exam-prep/`](information-ecology/exam-prep/) | ⚪ Запланировано |
-| **Тесты** | Тестирование | Онлайн-тестирование по курсу дисциплины | — | [`exam-prep/`](information-ecology/exam-prep/) | ⚪ Запланировано |
+| **Зачёт** | Подготовка | Полные развернутые ответы к зачету (Билеты 1–39) | — | [`exam-prep/`](information-ecology/exam-prep/) | 🔵 Готово к сдаче |
+| **Тесты** | Тестирование | База вопросов и эталонов ответов онлайн-тестирования | — | [`exam-prep/`](information-ecology/exam-prep/) | 🔵 Готово к сдаче |
 
 **Легенда статусов:**
 - 🟢 **Сдано / Зачтено** — лабораторная работа или этап контроля успешно защищены перед преподавателем;
@@ -69,10 +68,42 @@
 
 ```text
 university-labs/
-├── information-ecology/                          # Информационная экология (Курбатов В.А.)
+├── software-engineering/                         # Программная инженерия (Экзамен, 4 ЗЕТ)
+│   ├── labs/                                     # Лабораторные и практические задания
+│   ├── lectures/                                 # Лекционные материалы
+│   ├── docs/                                     # Методические указания и документация
+│   └── README.md
+├── project-activity/                             # Проектная деятельность (Зачёт, 1 ЗЕТ)
+│   ├── project/                                  # Материалы проекта и исходный код
+│   ├── docs/                                     # Паспорт проекта и документация
+│   └── README.md
+├── foreign-language/                             # Иностранный язык (Зачёт, 2 ЗЕТ)
+│   ├── practices/                                # Практические задания и переводы
+│   ├── docs/                                     # Методические материалы
+│   └── README.md
+├── russian-history/                              # История России (Дифф. зачёт, 2 ЗЕТ)
+│   ├── lectures/                                 # Конспекты лекций
+│   ├── seminars/                                 # Семинарские задания и рефераты
+│   ├── docs/                                     # Вопросы к зачету
+│   └── README.md
+├── russian-as-foreign/                           # Русский язык как иностранный (Зачёт, 2 ЗЕТ)
+│   ├── practices/                                # Практические занятия
+│   ├── docs/                                     # Учебные пособия
+│   └── README.md
+├── philosophy/                                   # Философия (Дифф. зачёт, 4 ЗЕТ)
+│   ├── lectures/                                 # Конспекты лекций
+│   ├── seminars/                                 # Семинары и доклады
+│   ├── docs/                                     # Вопросы к дифференцированному зачету
+│   └── README.md
+├── economics/                                    # Экономика (Зачёт, 2 ЗЕТ)
+│   ├── lectures/                                 # Лекции
+│   ├── practices/                                # Расчетные практические работы
+│   ├── docs/                                     # Методические материалы
+│   └── README.md
+├── information-ecology/                          # Информационная экология (Зачёт, 2 ЗЕТ, Курбатов В.А.)
 │   ├── lab-01-natural-lighting/                  # ЛР 1: Расчёт естественной освещённости
 │   │   ├── src/                                  # Расчетные скрипты (Python)
-│   │   ├── docs/                                 # Отчет .docx и методические материалы
+│   │   ├── docs/                                 # Отчет .docx по ГОСТ 7.32 и методички
 │   │   └── README.md
 │   ├── lab-02-microwave-protection/              # ЛР 2: Защита от СВЧ излучения
 │   │   ├── src/
@@ -82,9 +113,19 @@ university-labs/
 │   │   ├── src/
 │   │   ├── docs/
 │   │   └── README.md
-│   ├── lectures/                                 # Конспекты лекций
-│   ├── exam-prep/                                # Вопросы к зачету и тесты
+│   ├── lectures/                                 # Конспекты лекций (Markdown + PDF)
+│   ├── exam-prep/                                # Ответы на билеты, вопросы и тесты
 │   └── README.md                                 # Справочник дисциплины
+├── higher-math/                                  # Высшая математика (Экзамен, 5 ЗЕТ)
+│   ├── lectures/                                 # Конспекты лекций
+│   ├── practices/                                # Типовые расчеты и контрольные
+│   ├── docs/                                     # Экзаменационные материалы
+│   └── README.md
+├── math-logic/                                   # Математическая логика и теория алгоритмов (Зачёт, 3 ЗЕТ)
+│   ├── lectures/                                 # Лекционные материалы
+│   ├── practices/                                # Практические задания
+│   ├── docs/                                     # Методические материалы
+│   └── README.md
 ├── reports/
 │   └── templates/                                # Шаблоны оформления по ГОСТ 7.32
 │       └── README.md
