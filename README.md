@@ -23,18 +23,18 @@
 
 ## 📚 Учебный план и дисциплины (3 семестр)
 
-| № | Дисциплина | Трудоемкость (ЗЕТ) | Форма контроля | Директория | Ветка в Git |
-| :-: | :--- | :-: | :-: | :--- | :--- |
-| 1 | **Программная инженерия** | 4 ЗЕТ | **Экзамен** | [`software-engineering/`](software-engineering/) | [`subject/software-engineering`](https://github.com/Nihtg/university-labs/tree/subject/software-engineering) |
-| 2 | **Проектная деятельность** | 1 ЗЕТ | **Зачёт** | [`project-activity/`](project-activity/) | [`subject/project-activity`](https://github.com/Nihtg/university-labs/tree/subject/project-activity) |
-| 3 | **Иностранный язык** | 2 ЗЕТ | **Зачёт** | [`foreign-language/`](foreign-language/) | [`subject/foreign-language`](https://github.com/Nihtg/university-labs/tree/subject/foreign-language) |
-| 4 | **История России** | 2 ЗЕТ | **Дифференцированный зачёт** | [`russian-history/`](russian-history/) | [`subject/russian-history`](https://github.com/Nihtg/university-labs/tree/subject/russian-history) |
-| 5 | **Русский язык как иностранный** | 2 ЗЕТ | **Зачёт** | [`russian-as-foreign/`](russian-as-foreign/) | [`subject/russian-as-foreign`](https://github.com/Nihtg/university-labs/tree/subject/russian-as-foreign) |
-| 6 | **Философия** | 4 ЗЕТ | **Дифференцированный зачёт** | [`philosophy/`](philosophy/) | [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy) |
-| 7 | **Экономика** | 2 ЗЕТ | **Зачёт** | [`economics/`](economics/) | [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
-| 8 | **Информационная экология** | 2 ЗЕТ | **Зачёт** | [`information-ecology/`](information-ecology/) | [`main`](https://github.com/Nihtg/university-labs/tree/main), [`subject/info-ecology`](https://github.com/Nihtg/university-labs/tree/subject/info-ecology) |
-| 9 | **Высшая математика** | 5 ЗЕТ | **Экзамен** | [`higher-math/`](higher-math/) | [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
-| 10 | **Математическая логика и теория алгоритмов** | 3 ЗЕТ | **Зачёт** | [`math-logic/`](math-logic/) | [`subject/math-logic`](https://github.com/Nihtg/university-labs/tree/subject/math-logic) |
+| № | Дисциплина | Форма контроля | Директория | Ветка в Git |
+| :-: | :--- | :-: | :--- | :--- |
+| 1 | **Программная инженерия** | **Экзамен** | [`software-engineering/`](software-engineering/) | [`subject/software-engineering`](https://github.com/Nihtg/university-labs/tree/subject/software-engineering) |
+| 2 | **Проектная деятельность** | **Зачёт** | [`project-activity/`](project-activity/) | [`subject/project-activity`](https://github.com/Nihtg/university-labs/tree/subject/project-activity) |
+| 3 | **Иностранный язык** | **Зачёт** | [`foreign-language/`](foreign-language/) | [`subject/foreign-language`](https://github.com/Nihtg/university-labs/tree/subject/foreign-language) |
+| 4 | **История России** | **Дифференцированный зачёт** | [`russian-history/`](russian-history/) | [`subject/russian-history`](https://github.com/Nihtg/university-labs/tree/subject/russian-history) |
+| 5 | **Русский язык как иностранный** | **Зачёт** | [`russian-as-foreign/`](russian-as-foreign/) | [`subject/russian-as-foreign`](https://github.com/Nihtg/university-labs/tree/subject/russian-as-foreign) |
+| 6 | **Философия** | **Дифференцированный зачёт** | [`philosophy/`](philosophy/) | [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy) |
+| 7 | **Экономика** | **Зачёт** | [`economics/`](economics/) | [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
+| 8 | **Информационная экология** | **Зачёт** | [`information-ecology/`](information-ecology/) | [`main`](https://github.com/Nihtg/university-labs/tree/main), [`subject/info-ecology`](https://github.com/Nihtg/university-labs/tree/subject/info-ecology) |
+| 9 | **Высшая математика** | **Экзамен** | [`higher-math/`](higher-math/) | [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
+| 10 | **Математическая логика и теория алгоритмов** | **Зачёт** | [`math-logic/`](math-logic/) | [`subject/math-logic`](https://github.com/Nihtg/university-labs/tree/subject/math-logic) |
 
 ---
 
