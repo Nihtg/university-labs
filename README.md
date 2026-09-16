@@ -75,6 +75,7 @@
 | № | Вид работы | Тема / Название | Материалы и конспекты | Презентации (.pptx) | Статус |
 | :-: | :--- | :--- | :---: | :---: | :-: |
 | **Семинар 1** | Семинарское занятие / Доклад | **Эпоха дворцовых переворотов (1725–1762 гг.)** | [`.docx`](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/Семинар_1_Дворцовые_перевороты_Выполненное_задание.docx), [`.md`](https://github.com/Nihtg/university-labs/blob/subject/russian-history/russian-history/seminars/Семинар_1_Дворцовые_перевороты_Выполненное_задание.md), [Задание](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/Семинар_задание.docx) | [Презентации 1–5 (.pptx)](https://github.com/Nihtg/university-labs/tree/subject/russian-history/russian-history/seminars) | 🔵 Готово к сдаче |
+| **Семинар 2** | Семинарское занятие / Доклад | **Культура дворянского детства (XVIII — XIX вв.)** | [`.docx`](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/Семинар_2_Культура_дворянского_детства_Выполненное_задание.docx), [`.md`](https://github.com/Nihtg/university-labs/blob/subject/russian-history/russian-history/seminars/2%20семинар/Семинар_2_Культура_дворянского_детства_Выполненное_задание.md), [План](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/семинар%202_%20план%20работы.docx) | [Презентации 1–4 (.pptx)](https://github.com/Nihtg/university-labs/tree/subject/russian-history/russian-history/seminars/2%20семинар) | 🔵 Готово к сдаче |
 
 #### Состав материалов Семинара №1:
 1. **Выполненное аналитическое задание (все 3 блока):** [`.docx`](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/Семинар_1_Дворцовые_перевороты_Выполненное_задание.docx) | [`.md`](https://github.com/Nihtg/university-labs/blob/subject/russian-history/russian-history/seminars/Семинар_1_Дворцовые_перевороты_Выполненное_задание.md)
@@ -87,6 +88,19 @@
    - [Презентация 3: Анна Леопольдовна и Иоанн VI Антонович](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/3_Презентация_Анна_Леопольдовна_и_Иоанн_VI.pptx)
    - [Презентация 4: Елизавета Петровна](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/4_Презентация_Елизавета_Петровна.pptx)
    - [Презентация 5: Петр III Федорович](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/5_Презентация_Петр_III.pptx)
+
+#### Состав материалов Семинара №2:
+1. **Выполненное аналитическое задание (все 4 группы и 5 финальных вопросов):** [`.docx`](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/Семинар_2_Культура_дворянского_детства_Выполненное_задание.docx) | [`.md`](https://github.com/Nihtg/university-labs/blob/subject/russian-history/russian-history/seminars/2%20семинар/Семинар_2_Культура_дворянского_детства_Выполненное_задание.md)
+   - *Группа 1:* Появление на свет и таинство крещения (эмоции родителей, ритуал, дары, царское восприемничество).
+   - *Группа 2:* Система воспитания: от няни до гувернера (периодизация, крепостные няни, гувернеры, домашнее образование).
+   - *Группа 3:* Родители и дети: иерархия и привязанность (отделение миров, любовь и строгость, письма, воспитанницы).
+   - *Группа 4:* Мир детской субкультуры (сиблинги, игры, чтение, детские балы, воспитание для подвига).
+   - *Финальные вопросы:* 5 концептуальных ответов-рассуждений об истории детства и сословной культуре.
+2. **Презентации к сообщениям (PowerPoint 16:9 со слайдами и полным текстом для спикера):**
+   - [Презентация 1: Появление на свет и крещение](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/1_Презентация_Появление_на_свет_и_крещение.pptx)
+   - [Презентация 2: Система воспитания: от няни до гувернера](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/2_Презентация_Система_воспитания_от_няни_до_гувернера.pptx)
+   - [Презентация 3: Родители и дети: иерархия и любовь](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/3_Презентация_Родители_и_дети_иерархия_и_любовь.pptx)
+   - [Презентация 4: Мир детской субкультуры](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/4_Презентация_Мир_детской_субкультуры.pptx)
 
 ---
 
@@ -109,7 +123,7 @@ university-labs/
 │   └── README.md
 ├── russian-history/                              # История России (Дифф. зачёт, 2 ЗЕТ)
 │   ├── lectures/                                 # Конспекты лекций
-│   ├── seminars/                                 # Семинар 1 (отчет .docx/.md, 5 презентаций .pptx)
+│   ├── seminars/                                 # Семинары 1 и 2 (отчеты .docx/.md, презентации .pptx, книги)
 │   ├── docs/                                     # Вопросы к зачету
 │   └── README.md
 ├── russian-as-foreign/                           # Русский язык как иностранный (Зачёт, 2 ЗЕТ)
