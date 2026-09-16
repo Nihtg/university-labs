@@ -30,7 +30,7 @@
 | 3 | **Иностранный язык** | **Зачёт** | [`foreign-language/`](foreign-language/) | [`subject/foreign-language`](https://github.com/Nihtg/university-labs/tree/subject/foreign-language) |
 | 4 | **История России** | **Дифференцированный зачёт** | [`russian-history/`](russian-history/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/russian-history`](https://github.com/Nihtg/university-labs/tree/subject/russian-history) |
 | 5 | **Русский язык как иностранный** | **Зачёт** | [`russian-as-foreign/`](russian-as-foreign/) | [`subject/russian-as-foreign`](https://github.com/Nihtg/university-labs/tree/subject/russian-as-foreign) |
-| 6 | **Философия** | **Дифференцированный зачёт** | [`philosophy/`](philosophy/) | [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy) |
+| 6 | **Философия** | **Дифференцированный зачёт** | [`philosophy/`](philosophy/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy) |
 | 7 | **Экономика** | **Зачёт** | [`economics/`](economics/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
 | 8 | **Информационная экология** | **Зачёт** | [`information-ecology/`](information-ecology/) | [`main`](https://github.com/Nihtg/university-labs/tree/main), [`subject/info-ecology`](https://github.com/Nihtg/university-labs/tree/subject/info-ecology) |
 | 9 | **Высшая математика** | **Экзамен** | [`higher-math/`](higher-math/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
@@ -145,6 +145,21 @@
 | :-: | :--- | :--- | :---: | :---: | :-: |
 | **Лекция 1** | Видеолекция | **Основы микроэкономики: спрос, предложение, эластичность, конкуренция** | [`lecture-01.md`](economics/lectures/lecture-01.md) | [`transcript.txt`](economics/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
 | **Лекция 2** | Видеолекция | **Экономика предприятия: издержки, доходы, прибыль, макроэкономика** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+
+---
+
+## 🦉 Философия (МТУСИ)
+
+- **Преподаватель:** Макатов З.В., кандидат философских наук, доцент
+- **Форма контроля:** Дифференцированный зачёт (4 ЗЕТ, 144 акад. часа)
+- **Основная ветка дисциплины:** [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy)
+- **Каталог лекций и конспектов:** [`philosophy/lectures/`](philosophy/lectures/)
+
+### Статус лекций и учебных материалов:
+
+| № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
+| :-: | :--- | :--- | :---: | :---: | :-: |
+| **Лекции 1–3** | Видеомарафон (3 пары, 5 ч 11 мин) | **Полный курс истории философии и фундаментальных проблем** (Античность, Средневековье, Новое время, Просвещение, Кант, Гегель, Маркс, Камю, Фромм) | [`lecture-01.md`](philosophy/lectures/lecture-01.md) | [`lecture-01-transcript.txt`](philosophy/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
 
 ---
 
