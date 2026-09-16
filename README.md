@@ -33,8 +33,9 @@
 | 6 | **Философия** | **Дифференцированный зачёт** | [`philosophy/`](philosophy/) | [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy) |
 | 7 | **Экономика** | **Зачёт** | [`economics/`](economics/) | [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
 | 8 | **Информационная экология** | **Зачёт** | [`information-ecology/`](information-ecology/) | [`main`](https://github.com/Nihtg/university-labs/tree/main), [`subject/info-ecology`](https://github.com/Nihtg/university-labs/tree/subject/info-ecology) |
-| 9 | **Высшая математика** | **Экзамен** | [`higher-math/`](higher-math/) | [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
+| 9 | **Высшая математика** | **Экзамен** | [`higher-math/`](higher-math/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
 | 10 | **Математическая логика и теория алгоритмов** | **Зачёт** | [`math-logic/`](math-logic/) | [`subject/math-logic`](https://github.com/Nihtg/university-labs/tree/subject/math-logic) |
+
 
 ---
 
@@ -101,6 +102,24 @@
    - [Презентация 2: Система воспитания: от няни до гувернера](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/2_Презентация_Система_воспитания_от_няни_до_гувернера.pptx)
    - [Презентация 3: Родители и дети: иерархия и любовь](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/3_Презентация_Родители_и_дети_иерархия_и_любовь.pptx)
    - [Презентация 4: Мир детской субкультуры](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/4_Презентация_Мир_детской_субкультуры.pptx)
+
+---
+
+## 📐 Высшая математика (МТУСИ)
+
+- **Форма контроля:** Экзамен (5 ЗЕТ, 180 акад. часов)
+- **Основная ветка видеоконспектов:** [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures)
+- **Каталог дисциплины:** [`higher-math/`](higher-math/)
+- **Каталог лекций и конспектов:** [`higher-math/lectures/`](higher-math/lectures/)
+
+### Статус лекций и учебных материалов:
+
+| № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
+| :-: | :--- | :--- | :---: | :---: | :-: |
+| **Лекция 1** | Видеолекция | **Числовые ряды и признаки сходимости** | [`lecture-01.md`](higher-math/lectures/lecture-01.md) | [`transcript.txt`](higher-math/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
+| **Лекция 2** | Видеолекция | **Функциональные и степенные ряды, ряды Фурье** | *В процессе подготовки* | *В процессе подготовки* | 🟡 В процессе выполнения |
+| **Лекция 3** | Видеолекция | **Дифференциальные уравнения (часть 1)** | *В процессе подготовки* | *В процессе подготовки* | 🟡 В процессе выполнения |
+| **Лекция 4** | Видеолекция | **Дифференциальные уравнения (часть 2)** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
 
 ---
 
