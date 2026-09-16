@@ -28,13 +28,14 @@
 | 1 | **Программная инженерия** | **Экзамен** | [`software-engineering/`](software-engineering/) | [`subject/software-engineering`](https://github.com/Nihtg/university-labs/tree/subject/software-engineering) |
 | 2 | **Проектная деятельность** | **Зачёт** | [`project-activity/`](project-activity/) | [`subject/project-activity`](https://github.com/Nihtg/university-labs/tree/subject/project-activity) |
 | 3 | **Иностранный язык** | **Зачёт** | [`foreign-language/`](foreign-language/) | [`subject/foreign-language`](https://github.com/Nihtg/university-labs/tree/subject/foreign-language) |
-| 4 | **История России** | **Дифференцированный зачёт** | [`russian-history/`](russian-history/) | [`subject/russian-history`](https://github.com/Nihtg/university-labs/tree/subject/russian-history) |
+| 4 | **История России** | **Дифференцированный зачёт** | [`russian-history/`](russian-history/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/russian-history`](https://github.com/Nihtg/university-labs/tree/subject/russian-history) |
 | 5 | **Русский язык как иностранный** | **Зачёт** | [`russian-as-foreign/`](russian-as-foreign/) | [`subject/russian-as-foreign`](https://github.com/Nihtg/university-labs/tree/subject/russian-as-foreign) |
-| 6 | **Философия** | **Дифференцированный зачёт** | [`philosophy/`](philosophy/) | [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy) |
-| 7 | **Экономика** | **Зачёт** | [`economics/`](economics/) | [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
+| 6 | **Философия** | **Дифференцированный зачёт** | [`philosophy/`](philosophy/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy) |
+| 7 | **Экономика** | **Зачёт** | [`economics/`](economics/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
 | 8 | **Информационная экология** | **Зачёт** | [`information-ecology/`](information-ecology/) | [`main`](https://github.com/Nihtg/university-labs/tree/main), [`subject/info-ecology`](https://github.com/Nihtg/university-labs/tree/subject/info-ecology) |
-| 9 | **Высшая математика** | **Экзамен** | [`higher-math/`](higher-math/) | [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
+| 9 | **Высшая математика** | **Экзамен** | [`higher-math/`](higher-math/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
 | 10 | **Математическая логика и теория алгоритмов** | **Зачёт** | [`math-logic/`](math-logic/) | [`subject/math-logic`](https://github.com/Nihtg/university-labs/tree/subject/math-logic) |
+
 
 ---
 
@@ -51,8 +52,8 @@
 | **ЛР 1** | Лабораторная работа | **Расчёт естественной освещённости в производственном помещении** | [`src/`](information-ecology/lab-01-natural-lighting/src/) | [`docs/`](information-ecology/lab-01-natural-lighting/docs/) | 🔵 Готово к сдаче (ГОСТ 7.32) |
 | **ЛР 2** | Лабораторная работа | **Защита от СВЧ излучения** | [`src/`](information-ecology/lab-02-microwave-protection/src/) | [`docs/`](information-ecology/lab-02-microwave-protection/docs/) | 🔵 Готово к сдаче (ГОСТ 7.32) |
 | **ЛР 3** | Лабораторная работа | **Исследование шумовых параметров рабочей зоны** | [`src/`](information-ecology/lab-03-noise-parameters/src/) | [`docs/`](information-ecology/lab-03-noise-parameters/docs/) | 🔵 Готово к сдаче (ГОСТ 7.32) |
-| **Лекции** | Конспекты | **Лекции №1 и №2** («Основы экологии», «Глобальные экопроблемы») | — | [`lectures/`](information-ecology/lectures/) | 🔵 Готово к сдаче |
-| **Зачёт** | Подготовка | Полные развернутые ответы к зачету (Билеты 1–39) | — | [`exam-prep/`](information-ecology/exam-prep/) | 🔵 Готово к сдаче |
+| **Лекции** | Конспекты и видеосинтез | **Лекции №1 и №2**, видеосинтез 225 мин и 225 слайдов | — | [`lectures/`](information-ecology/lectures/) ([Синтез видео и слайдов](information-ecology/lectures/lecture-video-synthesis-2026-09-15.md), [Стенограмма](information-ecology/lectures/transcripts/lecture-2026-09-15-transcript.txt)) | 🔵 Готово к сдаче |
+| **Зачёт** | Подготовка | Полные 5-минутные развернутые ответы к зачету (все 63 вопроса, Части 1–4) | — | [`exam-prep/`](information-ecology/exam-prep/) | 🔵 Готово к сдаче |
 | **Тесты** | Тестирование | База вопросов и эталонов ответов онлайн-тестирования | — | [`exam-prep/`](information-ecology/exam-prep/) | 🔵 Готово к сдаче |
 
 **Легенда статусов:**
@@ -61,6 +62,104 @@
 - 🟡 **В процессе выполнения** — ведутся расчеты, разработка скриптов или подготовка отчета;
 - 🔴 **Требует доработки** — отправлено преподавателем на доработку с замечаниями;
 - ⚪ **Запланировано** — работа запланирована в соответствии с учебным планом.
+
+---
+
+## 🏛️ История России (МТУСИ)
+
+- **Форма контроля:** Дифференцированный зачёт (2 ЗЕТ, 72 акад. часа)
+- **Основная ветка дисциплины:** [`subject/russian-history`](https://github.com/Nihtg/university-labs/tree/subject/russian-history)
+- **Каталог дисциплины:** [`russian-history/`](https://github.com/Nihtg/university-labs/tree/subject/russian-history/russian-history)
+
+### Статус выполнения семинаров и заданий:
+
+| № | Вид работы | Тема / Название | Материалы и конспекты | Презентации (.pptx) | Статус |
+| :-: | :--- | :--- | :---: | :---: | :-: |
+| **Семинар 1** | Семинарское занятие / Доклад | **Эпоха дворцовых переворотов (1725–1762 гг.)** | [`.docx`](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/Семинар_1_Дворцовые_перевороты_Выполненное_задание.docx), [`.md`](https://github.com/Nihtg/university-labs/blob/subject/russian-history/russian-history/seminars/Семинар_1_Дворцовые_перевороты_Выполненное_задание.md), [Задание](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/Семинар_задание.docx) | [Презентации 1–5 (.pptx)](https://github.com/Nihtg/university-labs/tree/subject/russian-history/russian-history/seminars) | 🔵 Готово к сдаче |
+| **Семинар 2** | Семинарское занятие / Доклад | **Культура дворянского детства (XVIII — XIX вв.)** | [`.docx`](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/Семинар_2_Культура_дворянского_детства_Выполненное_задание.docx), [`.md`](https://github.com/Nihtg/university-labs/blob/subject/russian-history/russian-history/seminars/2%20семинар/Семинар_2_Культура_дворянского_детства_Выполненное_задание.md), [План](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/семинар%202_%20план%20работы.docx) | [Презентации 1–4 (.pptx)](https://github.com/Nihtg/university-labs/tree/subject/russian-history/russian-history/seminars/2%20семинар) | 🔵 Готово к сдаче |
+
+#### Состав материалов Семинара №1:
+1. **Выполненное аналитическое задание (все 3 блока):** [`.docx`](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/Семинар_1_Дворцовые_перевороты_Выполненное_задание.docx) | [`.md`](https://github.com/Nihtg/university-labs/blob/subject/russian-history/russian-history/seminars/Семинар_1_Дворцовые_перевороты_Выполненное_задание.md)
+   - *Задание 1:* Разбор лекции И.В. Курукина (ПостНаука) и материала Е.В. Пчелова (Arzamas).
+   - *Задание 2:* Групповая работа — 5 сообщений по ключевым правителям по монографии А.Б. Каменского.
+   - *Задание 3:* Итоговый вывод: оценка эпохи, стабильность социально-политического строя, дворянские привилегии.
+2. **Презентации к сообщениям (PowerPoint 16:9 со слайдами и полным текстом для спикера):**
+   - [Презентация 1: Екатерина I и Петр II](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/1_Презентация_Екатерина_I_и_Петр_II.pptx)
+   - [Презентация 2: Анна Иоанновна](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2_Презентация_Анна_Иоанновна.pptx)
+   - [Презентация 3: Анна Леопольдовна и Иоанн VI Антонович](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/3_Презентация_Анна_Леопольдовна_и_Иоанн_VI.pptx)
+   - [Презентация 4: Елизавета Петровна](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/4_Презентация_Елизавета_Петровна.pptx)
+   - [Презентация 5: Петр III Федорович](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/5_Презентация_Петр_III.pptx)
+
+#### Состав материалов Семинара №2:
+1. **Выполненное аналитическое задание (все 4 группы и 5 финальных вопросов):** [`.docx`](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/Семинар_2_Культура_дворянского_детства_Выполненное_задание.docx) | [`.md`](https://github.com/Nihtg/university-labs/blob/subject/russian-history/russian-history/seminars/2%20семинар/Семинар_2_Культура_дворянского_детства_Выполненное_задание.md)
+   - *Группа 1:* Появление на свет и таинство крещения (эмоции родителей, ритуал, дары, царское восприемничество).
+   - *Группа 2:* Система воспитания: от няни до гувернера (периодизация, крепостные няни, гувернеры, домашнее образование).
+   - *Группа 3:* Родители и дети: иерархия и привязанность (отделение миров, любовь и строгость, письма, воспитанницы).
+   - *Группа 4:* Мир детской субкультуры (сиблинги, игры, чтение, детские балы, воспитание для подвига).
+   - *Финальные вопросы:* 5 концептуальных ответов-рассуждений об истории детства и сословной культуре.
+2. **Презентации к сообщениям (PowerPoint 16:9 со слайдами и полным текстом для спикера):**
+   - [Презентация 1: Появление на свет и крещение](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/1_Презентация_Появление_на_свет_и_крещение.pptx)
+   - [Презентация 2: Система воспитания: от няни до гувернера](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/2_Презентация_Система_воспитания_от_няни_до_гувернера.pptx)
+   - [Презентация 3: Родители и дети: иерархия и любовь](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/3_Презентация_Родители_и_дети_иерархия_и_любовь.pptx)
+   - [Презентация 4: Мир детской субкультуры](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/4_Презентация_Мир_детской_субкультуры.pptx)
+
+### Статус лекций и учебных материалов:
+
+| № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
+| :-: | :--- | :--- | :--- | :--- | :---: |
+| **Лекция 1** | Видеолекция | **Эпоха дворцовых переворотов (1725–1762 гг.)** | [`lecture-01.md`](russian-history/lectures/lecture-01.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
+| **Лекция 2** | Видеолекция | **Россия в XIX – начале XX века (от Павла I до Николая II)** | [`lecture-02.md`](russian-history/lectures/lecture-02.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-02-transcript.txt) | 🔵 Готово к сдаче |
+| **Лекция 3** | Видеолекция | **Россия в эпоху войн и революций начала XX века** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+| **Лекция 4** | Видеолекция | **СССР в 1920–1930-е годы** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+
+---
+
+## 📐 Высшая математика (МТУСИ)
+
+- **Форма контроля:** Экзамен (5 ЗЕТ, 180 акад. часов)
+- **Основная ветка видеоконспектов:** [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures)
+- **Каталог дисциплины:** [`higher-math/`](higher-math/)
+- **Каталог лекций и конспектов:** [`higher-math/lectures/`](higher-math/lectures/)
+
+### Статус лекций и учебных материалов:
+
+| № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
+| :-: | :--- | :--- | :---: | :---: | :-: |
+| **Лекция 1** | Видеолекция | **Числовые ряды и признаки сходимости** | [`lecture-01.md`](higher-math/lectures/lecture-01.md) | [`transcript.txt`](higher-math/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
+| **Лекция 2** | Видеолекция | **Функциональные и степенные ряды, ряды Фурье** | [`lecture-02.md`](higher-math/lectures/lecture-02.md) | [`transcript.txt`](higher-math/lectures/transcripts/lecture-02-transcript.txt) | 🔵 Готово к сдаче |
+| **Лекция 3** | Видеолекция | **Дифференциальные уравнения (часть 1)** | *В процессе подготовки* | *В процессе подготовки* | 🟡 В процессе выполнения |
+| **Лекция 4** | Видеолекция | **Дифференциальные уравнения (часть 2)** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+
+---
+
+## 📈 Экономика (МТУСИ)
+
+- **Форма контроля:** Зачёт (2 ЗЕТ, 72 акад. часа)
+- **Основная ветка видеоконспектов:** [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures)
+- **Каталог дисциплины:** [`economics/`](economics/)
+- **Каталог лекций и конспектов:** [`economics/lectures/`](economics/lectures/)
+
+### Статус лекций и учебных материалов:
+
+| № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
+| :-: | :--- | :--- | :---: | :---: | :-: |
+| **Лекция 1** | Видеолекция | **Основы микроэкономики: спрос, предложение, эластичность, конкуренция** | [`lecture-01.md`](economics/lectures/lecture-01.md) | [`transcript.txt`](economics/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
+| **Лекция 2** | Видеолекция | **Экономика предприятия: издержки, доходы, прибыль, макроэкономика** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+
+---
+
+## 🦉 Философия (МТУСИ)
+
+- **Преподаватель:** Макатов З.В., кандидат философских наук, доцент
+- **Форма контроля:** Дифференцированный зачёт (4 ЗЕТ, 144 акад. часа)
+- **Основная ветка дисциплины:** [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy)
+- **Каталог лекций и конспектов:** [`philosophy/lectures/`](philosophy/lectures/)
+
+### Статус лекций и учебных материалов:
+
+| № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
+| :-: | :--- | :--- | :---: | :---: | :-: |
+| **Лекции 1–3** | Видеомарафон (3 пары, 5 ч 11 мин) | **Полный курс истории философии и фундаментальных проблем** (Античность, Средневековье, Новое время, Просвещение, Кант, Гегель, Маркс, Камю, Фромм) | [`lecture-01.md`](philosophy/lectures/lecture-01.md) | [`lecture-01-transcript.txt`](philosophy/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
 
 ---
 
@@ -83,7 +182,7 @@ university-labs/
 │   └── README.md
 ├── russian-history/                              # История России (Дифф. зачёт, 2 ЗЕТ)
 │   ├── lectures/                                 # Конспекты лекций
-│   ├── seminars/                                 # Семинарские задания и рефераты
+│   ├── seminars/                                 # Семинары 1 и 2 (отчеты .docx/.md, презентации .pptx, книги)
 │   ├── docs/                                     # Вопросы к зачету
 │   └── README.md
 ├── russian-as-foreign/                           # Русский язык как иностранный (Зачёт, 2 ЗЕТ)
