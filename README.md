@@ -31,7 +31,7 @@
 | 4 | **История России** | **Дифференцированный зачёт** | [`russian-history/`](russian-history/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/russian-history`](https://github.com/Nihtg/university-labs/tree/subject/russian-history) |
 | 5 | **Русский язык как иностранный** | **Зачёт** | [`russian-as-foreign/`](russian-as-foreign/) | [`subject/russian-as-foreign`](https://github.com/Nihtg/university-labs/tree/subject/russian-as-foreign) |
 | 6 | **Философия** | **Дифференцированный зачёт** | [`philosophy/`](philosophy/) | [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy) |
-| 7 | **Экономика** | **Зачёт** | [`economics/`](economics/) | [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
+| 7 | **Экономика** | **Зачёт** | [`economics/`](economics/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
 | 8 | **Информационная экология** | **Зачёт** | [`information-ecology/`](information-ecology/) | [`main`](https://github.com/Nihtg/university-labs/tree/main), [`subject/info-ecology`](https://github.com/Nihtg/university-labs/tree/subject/info-ecology) |
 | 9 | **Высшая математика** | **Экзамен** | [`higher-math/`](higher-math/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
 | 10 | **Математическая логика и теория алгоритмов** | **Зачёт** | [`math-logic/`](math-logic/) | [`subject/math-logic`](https://github.com/Nihtg/university-labs/tree/subject/math-logic) |
@@ -129,6 +129,22 @@
 | **Лекция 2** | Видеолекция | **Функциональные и степенные ряды, ряды Фурье** | [`lecture-02.md`](higher-math/lectures/lecture-02.md) | [`transcript.txt`](higher-math/lectures/transcripts/lecture-02-transcript.txt) | 🔵 Готово к сдаче |
 | **Лекция 3** | Видеолекция | **Дифференциальные уравнения (часть 1)** | *В процессе подготовки* | *В процессе подготовки* | 🟡 В процессе выполнения |
 | **Лекция 4** | Видеолекция | **Дифференциальные уравнения (часть 2)** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+
+---
+
+## 📈 Экономика (МТУСИ)
+
+- **Форма контроля:** Зачёт (2 ЗЕТ, 72 акад. часа)
+- **Основная ветка видеоконспектов:** [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures)
+- **Каталог дисциплины:** [`economics/`](economics/)
+- **Каталог лекций и конспектов:** [`economics/lectures/`](economics/lectures/)
+
+### Статус лекций и учебных материалов:
+
+| № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
+| :-: | :--- | :--- | :---: | :---: | :-: |
+| **Лекция 1** | Видеолекция | **Основы микроэкономики: спрос, предложение, эластичность, конкуренция** | [`lecture-01.md`](economics/lectures/lecture-01.md) | [`transcript.txt`](economics/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
+| **Лекция 2** | Видеолекция | **Экономика предприятия: издержки, доходы, прибыль, макроэкономика** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
 
 ---
 
