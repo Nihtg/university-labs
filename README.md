@@ -28,7 +28,7 @@
 | 1 | **Программная инженерия** | **Экзамен** | [`software-engineering/`](software-engineering/) | [`subject/software-engineering`](https://github.com/Nihtg/university-labs/tree/subject/software-engineering) |
 | 2 | **Проектная деятельность** | **Зачёт** | [`project-activity/`](project-activity/) | [`subject/project-activity`](https://github.com/Nihtg/university-labs/tree/subject/project-activity) |
 | 3 | **Иностранный язык** | **Зачёт** | [`foreign-language/`](foreign-language/) | [`subject/foreign-language`](https://github.com/Nihtg/university-labs/tree/subject/foreign-language) |
-| 4 | **История России** | **Дифференцированный зачёт** | [`russian-history/`](russian-history/) | [`subject/russian-history`](https://github.com/Nihtg/university-labs/tree/subject/russian-history) |
+| 4 | **История России** | **Дифференцированный зачёт** | [`russian-history/`](russian-history/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/russian-history`](https://github.com/Nihtg/university-labs/tree/subject/russian-history) |
 | 5 | **Русский язык как иностранный** | **Зачёт** | [`russian-as-foreign/`](russian-as-foreign/) | [`subject/russian-as-foreign`](https://github.com/Nihtg/university-labs/tree/subject/russian-as-foreign) |
 | 6 | **Философия** | **Дифференцированный зачёт** | [`philosophy/`](philosophy/) | [`subject/philosophy`](https://github.com/Nihtg/university-labs/tree/subject/philosophy) |
 | 7 | **Экономика** | **Зачёт** | [`economics/`](economics/) | [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
@@ -102,6 +102,15 @@
    - [Презентация 2: Система воспитания: от няни до гувернера](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/2_Презентация_Система_воспитания_от_няни_до_гувернера.pptx)
    - [Презентация 3: Родители и дети: иерархия и любовь](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/3_Презентация_Родители_и_дети_иерархия_и_любовь.pptx)
    - [Презентация 4: Мир детской субкультуры](https://github.com/Nihtg/university-labs/raw/subject/russian-history/russian-history/seminars/2%20семинар/4_Презентация_Мир_детской_субкультуры.pptx)
+
+### Статус лекций и учебных материалов:
+
+| № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
+| :-: | :--- | :--- | :---: | :---: | :-: |
+| **Лекция 1** | Видеолекция | **Эпоха дворцовых переворотов (1725–1762 гг.)** | [`lecture-01.md`](russian-history/lectures/lecture-01.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
+| **Лекция 2** | Видеолекция | **Российская империя во второй половине XVIII века** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+| **Лекция 3** | Видеолекция | **Россия в первой половине XIX века** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+| **Лекция 4** | Видеолекция | **Эпоха Великих реформ второй половины XIX века** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
 
 ---
 
