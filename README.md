@@ -52,7 +52,7 @@
 | **ЛР 1** | Лабораторная работа | **Расчёт естественной освещённости в производственном помещении** | [`src/`](information-ecology/lab-01-natural-lighting/src/) | [`docs/`](information-ecology/lab-01-natural-lighting/docs/) | 🔵 Готово к сдаче (ГОСТ 7.32) |
 | **ЛР 2** | Лабораторная работа | **Защита от СВЧ излучения** | [`src/`](information-ecology/lab-02-microwave-protection/src/) | [`docs/`](information-ecology/lab-02-microwave-protection/docs/) | 🔵 Готово к сдаче (ГОСТ 7.32) |
 | **ЛР 3** | Лабораторная работа | **Исследование шумовых параметров рабочей зоны** | [`src/`](information-ecology/lab-03-noise-parameters/src/) | [`docs/`](information-ecology/lab-03-noise-parameters/docs/) | 🔵 Готово к сдаче (ГОСТ 7.32) |
-| **Лекции** | Конспекты | **Лекции №1 и №2** («Основы экологии», «Глобальные экопроблемы») | — | [`lectures/`](information-ecology/lectures/) | 🔵 Готово к сдаче |
+| **Лекции** | Конспекты и видеосинтез | **Лекции №1 и №2**, видеосинтез 225 мин и 225 слайдов | — | [`lectures/`](information-ecology/lectures/) ([Синтез видео и слайдов](information-ecology/lectures/lecture-video-synthesis-2026-09-15.md), [Стенограмма](information-ecology/lectures/transcripts/lecture-2026-09-15-transcript.txt)) | 🔵 Готово к сдаче |
 | **Зачёт** | Подготовка | Полные 5-минутные развернутые ответы к зачету (все 63 вопроса, Части 1–4) | — | [`exam-prep/`](information-ecology/exam-prep/) | 🔵 Готово к сдаче |
 | **Тесты** | Тестирование | База вопросов и эталонов ответов онлайн-тестирования | — | [`exam-prep/`](information-ecology/exam-prep/) | 🔵 Готово к сдаче |
 
