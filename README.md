@@ -143,17 +143,20 @@
 
 ## 📈 Экономика (МТУСИ)
 
+- **Преподаватель:** Критина Елена Дмитриевна
 - **Форма контроля:** Зачёт (2 ЗЕТ, 72 акад. часа)
-- **Основная ветка видеоконспектов:** [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures)
+- **Основная ветка видеоконспектов:** [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics)
 - **Каталог дисциплины:** [`economics/`](economics/)
 - **Каталог лекций и конспектов:** [`economics/lectures/`](economics/lectures/)
+- **Каталог практик:** [`economics/practices/`](economics/practices/)
 
 ### Статус лекций и учебных материалов:
 
-| № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
-| :-: | :--- | :--- | :---: | :---: | :-: |
+| № | Вид работы | Тема / Название | Конспект и решения | Стенограмма | Статус |
+| :-: | :--- | :--- | :---: | :---: | :---: |
 | **Лекция 1** | Видеолекция | **Основы микроэкономики: спрос, предложение, эластичность, конкуренция** | [`lecture-01.md`](economics/lectures/lecture-01.md) | [`transcript.txt`](economics/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
-| **Лекция 2** | Видеолекция | **Экономика предприятия: издержки, доходы, прибыль, макроэкономика** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+| **Практика 1** | Практическое занятие | **Издержки фирмы, максимизация прибыли, практикум (задачи 1–5)** | [`practice-01.md`](economics/practices/practice-01.md) | [`transcript.txt`](economics/practices/transcripts/practice-01-transcript.txt) | 🔵 Готово к сдаче |
+| **Практика 2** | Практическое занятие | **Макроэкономика: ВВП, инвестиционные расчеты, рента** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
 
 ---
 
@@ -240,9 +243,13 @@ university-labs/
 │   ├── seminars/                                 # Семинары и доклады
 │   ├── docs/                                     # Вопросы к дифференцированному зачету
 │   └── README.md
-├── economics/                                    # Экономика (Зачёт, 2 ЗЕТ)
-│   ├── lectures/                                 # Лекции
-│   ├── practices/                                # Расчетные практические работы
+├── economics/                                    # Экономика (Зачёт, 2 ЗЕТ, Критина Е.Д.)
+│   ├── lectures/                                 # Лекции (см. lectures/README.md)
+│   │   ├── lecture-01.md                         # Лекция 1: Микроэкономика
+│   │   └── transcripts/                          # Стенограммы
+│   ├── practices/                                # Практикум и задачи (см. practices/README.md)
+│   │   ├── practice-01.md                        # Практика 1: Издержки и задачи 1-5
+│   │   └── transcripts/                          # Стенограммы
 │   ├── docs/                                     # Методические материалы
 │   └── README.md
 ├── information-ecology/                          # Информационная экология (Зачёт, 2 ЗЕТ, Курбатов В.А.)
