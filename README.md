@@ -110,7 +110,7 @@
 | **Лекция 1** | Видеолекция | **Эпоха дворцовых переворотов (1725–1762 гг.)** | [`lecture-01.md`](russian-history/lectures/lecture-01.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
 | **Лекция 2** | Видеолекция | **Россия в XIX – начале XX века (от Павла I до Николая II)** | [`lecture-02.md`](russian-history/lectures/lecture-02.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-02-transcript.txt) | 🔵 Готово к сдаче |
 | **Лекция 3** | Видеолекция | **Россия в эпоху войн и революций первой четверти XX века (1905–1920-е гг.)** | [`lecture-03.md`](russian-history/lectures/lecture-03.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-03-transcript.txt) | 🔵 Готово к сдаче |
-| **Лекция 4** | Видеолекция | **СССР в 1920–1930-е годы** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+| **Лекция 4** | Видеолекция | **СССР в 1920–1930-е годы (НЭП, нацполитика, культ вождя, модернизация и коллективизация)** | [`lecture-04.md`](russian-history/lectures/lecture-04.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-04-transcript.txt) | 🔵 Готово к сдаче |
 
 ---
 
@@ -159,11 +159,27 @@
 
 | № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
 | :-: | :--- | :--- | :---: | :---: | :-: |
-| **Лекции 1–3** | Видеомарафон (3 пары, 5 ч 11 мин) | **Полный курс истории философии и фундаментальных проблем** (Античность, Средневековье, Новое время, Просвещение, Кант, Гегель, Маркс, Камю, Фромм) | [`lecture-01.md`](philosophy/lectures/lecture-01.md) | [`lecture-01-transcript.txt`](philosophy/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
+---
+
+## 💻 Программная инженерия (МТУСИ)
+
+- **Преподаватель:** Водиченков Антон (кафедра «Программная инженерия» МТУСИ, Java-разработчик и DevOps)
+- **Форма контроля:** Экзамен (4 ЗЕТ, 144 акад. часа)
+- **Основная ветка дисциплины:** [`subject/software-engineering`](https://github.com/Nihtg/university-labs/tree/subject/software-engineering)
+- **Каталог дисциплины:** [`software-engineering/`](software-engineering/)
+- **Каталог лекций и конспектов:** [`software-engineering/lectures/`](software-engineering/lectures/)
+
+### Статус лекций и учебных материалов:
+
+| № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
+| :-: | :--- | :--- | :---: | :---: | :-: |
+| **Лекция 1** | Видеолекция | **Введение в программную инженерию, архитектурные парадигмы и жизненный цикл ПО** | [`lecture-01.md`](software-engineering/lectures/lecture-01.md) | [`transcript.txt`](software-engineering/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
+| **Лекция 2** | Видеолекция | **Методологии разработки ПО и продвинутые практики тестирования** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
 
 ---
 
 ## 📁 Структура репозитория
+
 
 ```text
 university-labs/
