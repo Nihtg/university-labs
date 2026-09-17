@@ -109,7 +109,7 @@
 | :-: | :--- | :--- | :--- | :--- | :---: |
 | **Лекция 1** | Видеолекция | **Эпоха дворцовых переворотов (1725–1762 гг.)** | [`lecture-01.md`](russian-history/lectures/lecture-01.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
 | **Лекция 2** | Видеолекция | **Россия в XIX – начале XX века (от Павла I до Николая II)** | [`lecture-02.md`](russian-history/lectures/lecture-02.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-02-transcript.txt) | 🔵 Готово к сдаче |
-| **Лекция 3** | Видеолекция | **Россия в эпоху войн и революций начала XX века** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+| **Лекция 3** | Видеолекция | **Россия в эпоху войн и революций первой четверти XX века (1905–1920-е гг.)** | [`lecture-03.md`](russian-history/lectures/lecture-03.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-03-transcript.txt) | 🔵 Готово к сдаче |
 | **Лекция 4** | Видеолекция | **СССР в 1920–1930-е годы** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
 
 ---
