@@ -34,7 +34,7 @@
 | 7 | **Экономика** | **Зачёт** | [`economics/`](economics/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/economics`](https://github.com/Nihtg/university-labs/tree/subject/economics) |
 | 8 | **Информационная экология** | **Зачёт** | [`information-ecology/`](information-ecology/) | [`main`](https://github.com/Nihtg/university-labs/tree/main), [`subject/info-ecology`](https://github.com/Nihtg/university-labs/tree/subject/info-ecology) |
 | 9 | **Высшая математика** | **Экзамен** | [`higher-math/`](higher-math/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/higher-math`](https://github.com/Nihtg/university-labs/tree/subject/higher-math) |
-| 10 | **Математическая логика и теория алгоритмов** | **Зачёт** | [`math-logic/`](math-logic/) | [`subject/math-logic`](https://github.com/Nihtg/university-labs/tree/subject/math-logic) |
+| 10 | **Математическая логика и теория алгоритмов** | **Зачёт** | [`math-logic/`](math-logic/) | [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/math-logic`](https://github.com/Nihtg/university-labs/tree/subject/math-logic) |
 
 
 ---
@@ -187,6 +187,27 @@
 
 ---
 
+---
+
+## 🧠 Математическая логика и теория алгоритмов (МТУСИ)
+
+- **Преподаватель:** Зайцев Евгений Игоревич (кафедра «Математическая кибернетика и информационные технологии» МТУСИ)
+- **Форма контроля:** Зачёт (3 ЗЕТ, 108 акад. часов)
+- **Основная ветка практик:** [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/math-logic`](https://github.com/Nihtg/university-labs/tree/subject/math-logic)
+- **Каталог дисциплины:** [`math-logic/`](math-logic/)
+- **Каталог практик:** [`math-logic/practices/`](math-logic/practices/)
+
+### Статус практических занятий:
+
+| № | Вид работы | Тема / Название | Конспект и решения | Стенограмма | Статус |
+| :-: | :--- | :--- | :---: | :---: | :---: |
+| **Практика 1** | Практическое занятие | **Синтез и минимизация комбинационных схем: карты Карно, базисы И-НЕ/ИЛИ-НЕ/XOR, одноразрядный сумматор (Full Adder)** | [`practice-01.md`](math-logic/practices/practice-01.md) | [`transcript.txt`](math-logic/practices/transcripts/practice-01-transcript.txt) | 🔵 Готово к сдаче |
+| **Практика 2** | Практическое занятие | **Логика предикатов, кванторы и язык Prolog** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+| **Практика 3** | Практическое занятие | **Формальные грамматики и конечные автоматы** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+| **Практика 4** | Практическое занятие | **Машины Тьюринга и алгоритмы Маркова** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+
+---
+
 ## 📁 Структура репозитория
 
 
@@ -247,7 +268,9 @@ university-labs/
 │   └── README.md
 ├── math-logic/                                   # Математическая логика и теория алгоритмов (Зачёт, 3 ЗЕТ)
 │   ├── lectures/                                 # Лекционные материалы
-│   ├── practices/                                # Практические задания
+│   ├── practices/                                # Практические занятия (см. practices/README.md)
+│   │   ├── practice-01.md                        # Практика 1: Карты Карно, сумматоры, КМОП
+│   │   └── transcripts/                          # Стенограммы
 │   ├── docs/                                     # Методические материалы
 │   └── README.md
 ├── reports/
