@@ -4,6 +4,7 @@ import './App.css'
 function App() {
   const [books, setBooks] = useState([])
   const [loading, setLoading] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [newBook, setNewBook] = useState({
     title: '', author: '', genre: '', year: '', price: ''
   })
@@ -46,6 +47,7 @@ function App() {
       })
       if (response.ok) {
         setNewBook({ title: '', author: '', genre: '', year: '', price: '' })
+        setIsModalOpen(false)
         fetchBooks()
       }
     } catch (error) {
@@ -67,52 +69,86 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>Library Manager</h1>
-      
-      <div className="add-book-form">
-        <h2>Add a New Book</h2>
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="title" placeholder="Title" value={newBook.title} onChange={handleInputChange} required />
-          <input type="text" name="author" placeholder="Author" value={newBook.author} onChange={handleInputChange} required />
-          <input type="text" name="genre" placeholder="Genre" value={newBook.genre} onChange={handleInputChange} required />
-          <input type="number" name="year" placeholder="Year" value={newBook.year} onChange={handleInputChange} required />
-          <input type="number" step="0.01" name="price" placeholder="Price" value={newBook.price} onChange={handleInputChange} required />
-          <button type="submit">Add Book</button>
-        </form>
-      </div>
+    <div className="app-container">
+      <header className="header">
+        <div className="logo">📚 LibraryOS</div>
+        <button className="add-btn" onClick={() => setIsModalOpen(true)}>
+          + Add Book
+        </button>
+      </header>
 
-      <div className="books-list">
-        <h2>Books List</h2>
-        {loading ? <p>Loading...</p> : (
-          <table>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Genre</th>
-                <th>Year</th>
-                <th>Price</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {books.map(book => (
-                <tr key={book.id}>
-                  <td>{book.title}</td>
-                  <td>{book.author}</td>
-                  <td>{book.genre}</td>
-                  <td>{book.year}</td>
-                  <td>${book.price}</td>
-                  <td>
-                    <button onClick={() => deleteBook(book.id)}>Delete</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <main className="main-content">
+        <div className="header-section">
+          <h2>All Books</h2>
+          <p className="subtitle">Manage your library collection</p>
+        </div>
+
+        {loading ? (
+          <div className="loading">Loading books...</div>
+        ) : (
+          <div className="books-grid">
+            {books.length === 0 ? (
+              <div className="empty-state">No books in the library yet.</div>
+            ) : (
+              books.map(book => (
+                <div className="book-card" key={book.id}>
+                  <div className="book-card-header">
+                    <span className="genre-badge">{book.genre}</span>
+                    <span className="price-tag">${book.price}</span>
+                  </div>
+                  <h3 className="book-title">{book.title}</h3>
+                  <p className="book-author">by {book.author}</p>
+                  <div className="book-footer">
+                    <span className="book-year">{book.year}</span>
+                    <button className="delete-btn" onClick={() => deleteBook(book.id)}>
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
         )}
-      </div>
+      </main>
+
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Add New Book</h2>
+              <button className="close-btn" onClick={() => setIsModalOpen(false)}>×</button>
+            </div>
+            <form onSubmit={handleSubmit} className="book-form">
+              <div className="form-group">
+                <label>Title</label>
+                <input type="text" name="title" value={newBook.title} onChange={handleInputChange} required />
+              </div>
+              <div className="form-group">
+                <label>Author</label>
+                <input type="text" name="author" value={newBook.author} onChange={handleInputChange} required />
+              </div>
+              <div className="form-group-row">
+                <div className="form-group">
+                  <label>Genre</label>
+                  <input type="text" name="genre" value={newBook.genre} onChange={handleInputChange} required />
+                </div>
+                <div className="form-group">
+                  <label>Year</label>
+                  <input type="number" name="year" value={newBook.year} onChange={handleInputChange} required />
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Price ($)</label>
+                <input type="number" step="0.01" name="price" value={newBook.price} onChange={handleInputChange} required />
+              </div>
+              <div className="form-actions">
+                <button type="button" className="cancel-btn" onClick={() => setIsModalOpen(false)}>Cancel</button>
+                <button type="submit" className="submit-btn">Save Book</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
