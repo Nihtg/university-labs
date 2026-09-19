@@ -181,6 +181,13 @@
 - **Каталог дисциплины:** [`software-engineering/`](software-engineering/)
 - **Каталог лекций и конспектов:** [`software-engineering/lectures/`](software-engineering/lectures/)
 
+
+### Статус лабораторных работ:
+
+| № | Вид работы | Тема / Название | Ссылка на репозиторий | Отчет | Статус |
+| :-: | :--- | :--- | :---: | :---: | :-: |
+| **ЛР 1-2** | Лабораторная работа | **Разработка REST API (FastAPI) и Frontend-клиента (React)** | [GitHub Repo](https://github.com/Nihtg/labs-vyacheslav-bst2556) | [`Отчет_v2.docx`](software-engineering/labs/Отчет_Лабораторные_работы_БСТ2556_v2.docx) | 🔵 Готово к сдаче |
+
 ### Статус лекций и учебных материалов:
 
 | № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
