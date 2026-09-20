@@ -17,6 +17,16 @@ def convert_md_to_pdf(md_path, pdf_path):
     <head>
         <meta charset="utf-8">
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script>
+            window.MathJax = {{
+                tex: {{
+                    inlineMath: [['$', '$'], ['\\\\(', '\\\\)']]
+                }},
+                startup: {{
+                    typeset: true
+                }}
+            }};
+        </script>
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script type="module">
             import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
@@ -50,6 +60,7 @@ def convert_md_to_pdf(md_path, pdf_path):
         msedge_path,
         "--headless",
         "--disable-gpu",
+        "--virtual-time-budget=5000",
         f"--print-to-pdf={pdf_path}",
         "--no-pdf-header-footer",
         temp_html
