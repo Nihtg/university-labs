@@ -168,7 +168,7 @@
 | :-: | :--- | :--- | :---: | :---: | :---: |
 | **Лекция 1** | Видеолекция | **Основы микроэкономики: спрос, предложение, эластичность, конкуренция** | [`lecture-01.md`](economics/lectures/lecture-01.md) | [`transcript.txt`](economics/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
 | **Практика 1** | Практическое занятие | **Издержки фирмы, максимизация прибыли, практикум (задачи 1–5)** | [`practice-01.md`](economics/practices/practice-01.md) | [`transcript.txt`](economics/practices/transcripts/practice-01-transcript.txt) | 🔵 Готово к сдаче |
-| **Практика 2** | Практическое занятие | **Макроэкономика: ВВП, инвестиционные расчеты, рента** | *Запланировано* | *Запланировано* | ⚪ Запланировано |
+| **Практика 2** | Практическое занятие | **Предприятие как субъект, издержки, выручка, правила поведения фирмы и рыночный практикум (задачи 1–2)** | [`practice-02.md`](economics/practices/practice-02.md) | [`transcript.txt`](economics/practices/transcripts/practice-02-transcript.txt) | 🔵 Готово к сдаче |
 
 ---
 
@@ -276,6 +276,7 @@ university-labs/
 │   │   └── transcripts/                          # Стенограммы
 │   ├── practices/                                # Практикум и задачи (см. practices/README.md)
 │   │   ├── practice-01.md                        # Практика 1: Издержки и задачи 1-5
+│   │   ├── practice-02.md                        # Практика 2: Предприятие, издержки, выручка, задачи 1-2
 │   │   └── transcripts/                          # Стенограммы
 │   ├── docs/                                     # Методические материалы
 │   └── README.md
