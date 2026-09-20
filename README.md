@@ -123,6 +123,7 @@
 | **Лекция 2** | Видеолекция | **Россия в XIX – начале XX века (от Павла I до Николая II)** | [`lecture-02.md`](russian-history/lectures/lecture-02.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-02-transcript.txt) | 🔵 Готово к сдаче |
 | **Лекция 3** | Видеолекция | **Россия в эпоху войн и революций первой четверти XX века (1905–1920-е гг.)** | [`lecture-03.md`](russian-history/lectures/lecture-03.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-03-transcript.txt) | 🔵 Готово к сдаче |
 | **Лекция 4** | Видеолекция | **СССР в 1920–1930-е годы (НЭП, нацполитика, культ вождя, модернизация и коллективизация)** | [`lecture-04.md`](russian-history/lectures/lecture-04.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-04-transcript.txt) | 🔵 Готово к сдаче |
+| **Лекция 5** | Видеолекция | **СССР в 1930–1940-е годы: коллективизация, стахановцы, Великая Отечественная война и послевоенный мир** | [`lecture-05.md`](russian-history/lectures/lecture-05.md) | [`transcript.txt`](russian-history/lectures/transcripts/lecture-05-transcript.txt) | 🔵 Готово к сдаче |
 
 ---
 
@@ -256,6 +257,12 @@ university-labs/
 │   └── README.md
 ├── russian-history/                              # История России (Дифф. зачёт, 2 ЗЕТ)
 │   ├── lectures/                                 # Конспекты лекций
+│   │   ├── lecture-01.md                         # Лекция 1: Дворцовые перевороты
+│   │   ├── lecture-02.md                         # Лекция 2: XIX - начало XX века
+│   │   ├── lecture-03.md                         # Лекция 3: Войны и революции
+│   │   ├── lecture-04.md                         # Лекция 4: СССР в 1920-1930-е гг.
+│   │   ├── lecture-05.md                         # Лекция 5: Коллективизация, ВОВ, послевоенный мир
+│   │   └── transcripts/                          # Стенограммы
 │   ├── seminars/                                 # Семинары 1 и 2 (отчеты .docx/.md, презентации .pptx, книги)
 │   ├── docs/                                     # Вопросы к зачету
 │   └── README.md
