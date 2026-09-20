@@ -73,7 +73,7 @@
 
 | № | Вид работы | Тема / Название | Материалы | Статус |
 | :-: | :--- | :--- | :---: | :-: |
-| **ДЗ 1** | Домашнее задание | **Describe a programming language (C++)** | [`practices/hometask_cpp.md`](foreign-language/practices/hometask_cpp.md) | 🔵 Готово к сдаче |
+| **ДЗ 1** | Домашнее задание | **Describe a programming language (C++)** | [`practices/hometask_cpp.md`](foreign-language/practices/hometask_cpp.md), [`practices/hometask_cpp.docx`](foreign-language/practices/hometask_cpp.docx) | 🔵 Готово к сдаче |
 
 ---
 
