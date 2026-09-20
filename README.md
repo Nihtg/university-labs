@@ -171,7 +171,7 @@
 
 | № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
 | :-: | :--- | :--- | :---: | :---: | :-: |
----
+| **Лекция 1** | Видеолекция | **Предмет философии, специфика философского знания и философия в системе культуры** | [`lecture-01.md`](philosophy/lectures/lecture-01.md) | [`transcript.txt`](philosophy/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
 
 ## 💻 Программная инженерия (МТУСИ)
 
@@ -206,6 +206,12 @@
 - **Основная ветка практик:** [`notes/video-lectures`](https://github.com/Nihtg/university-labs/tree/notes/video-lectures), [`subject/math-logic`](https://github.com/Nihtg/university-labs/tree/subject/math-logic)
 - **Каталог дисциплины:** [`math-logic/`](math-logic/)
 - **Каталог практик:** [`math-logic/practices/`](math-logic/practices/)
+
+### Статус лекций и учебных материалов:
+
+| № | Вид работы | Тема / Название | Конспект | Стенограмма | Статус |
+| :-: | :--- | :--- | :---: | :---: | :---: |
+| **Лекция 1** | Видеолекция | **Введение. Информационные процессы, булева алгебра и автоматы** | [`lecture-01.md`](math-logic/lectures/lecture-01.md) | [`transcript.txt`](math-logic/lectures/transcripts/lecture-01-transcript.txt) | 🔵 Готово к сдаче |
 
 ### Статус практических занятий:
 
@@ -247,6 +253,8 @@ university-labs/
 │   └── README.md
 ├── philosophy/                                   # Философия (Дифф. зачёт, 4 ЗЕТ)
 │   ├── lectures/                                 # Конспекты лекций
+│   │   ├── lecture-01.md                         # Лекция 1: Предмет философии
+│   │   └── transcripts/                          # Стенограммы
 │   ├── seminars/                                 # Семинары и доклады
 │   ├── docs/                                     # Вопросы к дифференцированному зачету
 │   └── README.md
@@ -282,6 +290,8 @@ university-labs/
 │   └── README.md
 ├── math-logic/                                   # Математическая логика и теория алгоритмов (Зачёт, 3 ЗЕТ)
 │   ├── lectures/                                 # Лекционные материалы
+│   │   ├── lecture-01.md                         # Лекция 1: Булева алгебра и автоматы
+│   │   └── transcripts/                          # Стенограммы
 │   ├── practices/                                # Практические занятия (см. practices/README.md)
 │   │   ├── practice-01.md                        # Практика 1: Карты Карно, сумматоры, КМОП
 │   │   └── transcripts/                          # Стенограммы
